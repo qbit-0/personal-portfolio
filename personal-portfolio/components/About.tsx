@@ -1,6 +1,21 @@
-import { Box, Container, Paper, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Paper,
+  Stack,
+  Tab,
+  Tabs,
+  Typography,
+} from "@mui/material";
 import { motion } from "framer-motion";
-import { FC, useContext, useEffect, useRef } from "react";
+import {
+  FC,
+  SyntheticEvent,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { NavContext } from "../utility/context/NavProvider";
 
 type Props = {};
@@ -11,9 +26,48 @@ const About: FC<Props> = (props) => {
 
   useEffect(() => {
     navCallbacks.about.setNavCallback(() => () => {
-      navRef.current?.scrollIntoView({ block: "center" });
+      navRef.current?.scrollIntoView();
     });
   }, [navRef]);
+
+  const [time, setTime] = useState("past");
+
+  const handleTimeChange = (event: SyntheticEvent, value: any) => {
+    setTime(value);
+  };
+
+  let aboutContent: JSX.Element = null;
+  switch (time) {
+    case "past":
+      aboutContent = (
+        <Typography maxWidth={1000} variant="h5">
+          Born in Vietnam, immigrated to the States at 8. Always been fond of
+          computers, I started learning Python in middle school. In highschool,
+          I quickly found my place as a member of STEM Club, joining various
+          engineering and robotics competitions.
+        </Typography>
+      );
+      break;
+    case "present":
+      aboutContent = (
+        <Typography maxWidth={1000} variant="h5">
+          At UCSD, I joined IEEE. First in Micromouse, then as a software
+          developer on RoboCup soccer eventually becomming the software lead. I
+          gaduated with a degree in Cognitive Science, specializing in Machine
+          Learning and Neural Computation.
+        </Typography>
+      );
+      break;
+    case "future":
+      aboutContent = (
+        <Typography maxWidth={1000} variant="h5">
+          I started learning web development near the end of my senior year. I
+          wanted to build a personal porfolio. I figured I might as well make a
+          career out of it. I just want to program stuff.
+        </Typography>
+      );
+      break;
+  }
 
   return (
     <Container
@@ -26,12 +80,7 @@ const About: FC<Props> = (props) => {
         my: 16,
       }}
     >
-      <Stack
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        spacing={8}
-      >
+      <Box>
         <Typography variant="h2" fontSize={96} fontWeight="bold">
           ABOUT
         </Typography>
@@ -47,20 +96,14 @@ const About: FC<Props> = (props) => {
           }}
           viewport={{ amount: "all" }}
         >
-          <Typography maxWidth={1000} mx="auto">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita,
-            quam sit nobis consequatur eveniet perspiciatis fugit vitae ex minus
-            maiores dicta illo, aspernatur culpa sed libero delectus harum, ea
-            alias. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Rerum libero eveniet inventore quia dolor quod laborum molestiae,
-            nisi adipisci a dicta ex iusto eius sint numquam aliquam? Minima,
-            iste aut. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Earum inventore eius, quas minima iste modi soluta rerum voluptates
-            totam exercitationem dolore dolorum sapiente voluptas molestiae
-            incidunt quos, voluptatem necessitatibus at.
-          </Typography>
+          <Tabs value={time} onChange={handleTimeChange}>
+            <Tab value="past" label="Past" />
+            <Tab value="present" label="Present" />
+            <Tab value="future" label="Future" />
+          </Tabs>
+          <Stack spacing={2}>{aboutContent}</Stack>
         </Paper>
-      </Stack>
+      </Box>
     </Container>
   );
 };

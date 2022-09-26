@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { FC } from "react";
 import NavBar from "./NavBar";
 

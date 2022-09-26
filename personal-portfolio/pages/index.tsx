@@ -3,7 +3,6 @@ import { FC } from "react";
 import About from "../components/About";
 import Contact from "../components/Contact";
 import FixedNavBar from "../components/FixedNavBar";
-import Footer from "../components/Footer";
 import Home from "../components/Home";
 import Projects from "../components/Projects";
 import Skills from "../components/Skills";

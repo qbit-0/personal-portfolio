@@ -12,7 +12,7 @@ const Skills: FC<Props> = (props) => {
 
   useEffect(() => {
     navCallbacks.skills.setNavCallback(() => () => {
-      navRef.current?.scrollIntoView({ block: "center" });
+      navRef.current?.scrollIntoView();
     });
   }, [navRef]);
 
@@ -29,13 +29,13 @@ const Skills: FC<Props> = (props) => {
         setTimeout(() => {
           setIsSplit2(true);
           setSplit2Timeout(undefined);
-        }, 200)
+        }, 100)
       );
       setSplit3Timeout(
         setTimeout(() => {
           setIsSplit3(true);
           setSplit3Timeout(undefined);
-        }, 300)
+        }, 200)
       );
     } else {
       setIsSplit2(false);

@@ -2,8 +2,8 @@ import {
   Box,
   Button,
   Container,
-  Modal,
   Paper,
+  Portal,
   Stack,
   Typography,
 } from "@mui/material";
@@ -23,67 +23,75 @@ const Projects: FC<Props> = (props) => {
 
   useEffect(() => {
     navCallbacks.projects.setNavCallback(() => () => {
-      navRef.current?.scrollIntoView({ block: "center" });
+      navRef.current?.scrollIntoView();
     });
   }, [navRef]);
 
   const [isSplit, setIsSplit] = useState(false);
 
   return (
-    <Container
-      ref={navRef}
-      sx={{
-        minHeight: "100vh",
-        my: 16,
-      }}
-    >
-      <Typography variant="h2" fontSize={96} fontWeight="bold">
-        PROJECTS
-      </Typography>
-      <Stack
-        component={motion.div}
-        spacing={8}
-        alignItems="center"
-        onViewportEnter={() => {
-          setNavValue("projects");
+    <>
+      <Container
+        ref={navRef}
+        sx={{
+          minHeight: "100vh",
+          my: 16,
         }}
-        viewport={{ amount: "all" }}
-        whileInView={{ scale: 1.025 }}
       >
-        <SplitablePaper
-          width="1000px"
-          height="600px"
-          elevation={6}
-          borderRadius={16}
-          splitDirection="vertical"
-          animate={isSplit ? "split" : "joined"}
+        <Typography variant="h2" fontSize={96} fontWeight="bold">
+          PROJECTS
+        </Typography>
+        <Stack
+          component={motion.div}
+          spacing={8}
+          alignItems="center"
+          onViewportEnter={() => {
+            setNavValue("projects");
+          }}
+          viewport={{ amount: "all" }}
+          whileInView={{ scale: 1.025 }}
         >
-          <Paper sx={{ flex: 1 }}>
-            <Stack height="100%" justifyContent="center" alignItems="center">
-              <Typography variant="h4" display="block">
-                DoomScroll
-              </Typography>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  setIsSplit(!isSplit);
-                }}
-              >
-                View Project
-              </Button>
-            </Stack>
-          </Paper>
-          <Paper sx={{ flex: 1, overflow: "clip" }}>
-            <iframe
-              src={url}
-              width="100%"
-              height="100%"
-              style={{ border: "none" }}
-            />
-          </Paper>
-        </SplitablePaper>
-      </Stack>
-    </Container>
+          <SplitablePaper
+            width="1000px"
+            height="600px"
+            elevation={6}
+            borderRadius={16}
+            splitDirection="vertical"
+            animate={isSplit ? "split" : "joined"}
+          >
+            <Paper sx={{ flex: 1 }}>
+              <Stack height="100%" justifyContent="center" alignItems="center">
+                <Typography variant="h4" display="block">
+                  DoomScroll
+                </Typography>
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    setIsSplit(!isSplit);
+                    window.open(url, "_blank");
+                  }}
+                >
+                  View Project
+                </Button>
+              </Stack>
+            </Paper>
+            <Paper
+              sx={{
+                flex: 2,
+                overflow: "clip",
+              }}
+            >
+              <iframe
+                src={url}
+                width="100%"
+                height="100%"
+                style={{ border: "none" }}
+              />
+            </Paper>
+          </SplitablePaper>
+        </Stack>
+      </Container>
+    </>
   );
 };
 

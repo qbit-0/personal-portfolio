@@ -13,7 +13,7 @@ const Contact: FC<Props> = (props) => {
 
   useEffect(() => {
     navCallbacks.contact.setNavCallback(() => () => {
-      navRef.current?.scrollIntoView({ block: "center" });
+      navRef.current?.scrollIntoView();
     });
   }, [navRef]);
 
@@ -24,41 +24,57 @@ const Contact: FC<Props> = (props) => {
         position: "relative",
         minHeight: "100vh",
         mt: 16,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <Typography variant="h2" fontSize={96} fontWeight="bold">
-        CONTACT
-      </Typography>
-      <Paper
-        component={motion.div}
-        elevation={6}
-        onViewportEnter={() => {
-          setNavValue("contact");
-        }}
-        viewport={{ amount: "some" }}
-        sx={{ borderRadius: 8, p: 4 }}
-      >
-        <Stack spacing={2}>
-          <Stack direction="row" spacing={2}>
-            <Email />
-            <Link>
-              <Typography>duypham12241999@gmail.com</Typography>
-            </Link>
-          </Stack>
+      <Box>
+        <Typography variant="h2" fontSize={96} fontWeight="bold">
+          CONTACT
+        </Typography>
+        <Paper
+          component={motion.div}
+          elevation={6}
+          onViewportEnter={() => {
+            setNavValue("contact");
+          }}
+          viewport={{ amount: "some" }}
+          sx={{ borderRadius: 8, p: 4 }}
+        >
+          <Stack spacing={2}>
+            <Stack direction="row" spacing={2}>
+              <Email />
+              <Link>
+                <Typography>duypham12241999@gmail.com</Typography>
+              </Link>
+            </Stack>
 
-          <Stack direction="row" spacing={2}>
-            <LinkedInIcon />
-            <Link>
-              <Typography>
-                https://www.linkedin.com/in/duy-pham-a15160140
-              </Typography>
-            </Link>
+            <Stack direction="row" spacing={2}>
+              <LinkedInIcon />
+              <Link>
+                <Typography>
+                  https://www.linkedin.com/in/duy-pham-a15160140
+                </Typography>
+              </Link>
+            </Stack>
           </Stack>
-        </Stack>
-      </Paper>
+        </Paper>
+      </Box>
       <Box position="absolute" left={0} bottom={0}>
         <Box p={2}>
-          <Typography>Designed and built by me.</Typography>
+          <Typography>
+            Designed and built by{" "}
+            <Link
+              onClick={() => {
+                if (navCallbacks.home.navCallback)
+                  navCallbacks.home.navCallback();
+              }}
+            >
+              me
+            </Link>
+            .
+          </Typography>
         </Box>
       </Box>
     </Container>

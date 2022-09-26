@@ -1,5 +1,5 @@
 import { PropsOf } from "@emotion/react";
-import { Paper, Stack, StackProps } from "@mui/material";
+import { Box, Paper, Stack, StackProps } from "@mui/material";
 import { motion, Variant, Variants } from "framer-motion";
 import React, { FC } from "react";
 
@@ -113,15 +113,15 @@ const SplitablePaper: FC<Props> = (props) => {
               split: splitPaperVariant,
             };
 
+            const { children: childChildren, ...otherChildProps } = child.props;
+
             return (
-              <Paper
+              <Box
                 component={motion.div}
-                elevation={0}
-                {...child.props}
                 sx={{
-                  ...child.props.sx,
-                  overflow: "visible",
                   position: "relative",
+                  ...otherChildProps.sx,
+                  overflow: "visible",
                 }}
                 variants={paperVariants}
                 initial={initial}
@@ -129,23 +129,10 @@ const SplitablePaper: FC<Props> = (props) => {
               >
                 <Paper
                   component={motion.div}
-                  elevation={0}
-                  {...child.props}
-                  sx={{
-                    ...child.props.sx,
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                  variants={paperVariants}
-                  initial={initial}
-                  animate={animate}
-                />
-                <Paper
-                  component={motion.div}
+                  {...otherChildProps}
                   elevation={24}
                   sx={{
-                    ...child.props.sx,
+                    ...otherChildProps.sx,
                     position: "absolute",
                     width: "100%",
                     height: "100%",
@@ -155,7 +142,23 @@ const SplitablePaper: FC<Props> = (props) => {
                   initial={initial}
                   animate={animate}
                 />
-              </Paper>
+                <Paper
+                  component={motion.div}
+                  {...otherChildProps}
+                  elevation={0}
+                  sx={{
+                    ...otherChildProps.sx,
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                  variants={paperVariants}
+                  initial={initial}
+                  animate={animate}
+                >
+                  {childChildren}
+                </Paper>
+              </Box>
             );
           case SplitablePaper.name:
             return (
