@@ -6,7 +6,7 @@ type Props = {};
 
 const FixedNavBar: FC<Props> = ({}) => {
   return (
-    <Box display="flex" position="fixed" zIndex={50} width="100%" top={0} p={4}>
+    <Box display="flex" position="fixed" zIndex={50} top={0} p={4}>
       <NavBar orientation="vertical" />
     </Box>
   );

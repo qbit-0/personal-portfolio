@@ -1,19 +1,8 @@
-import {
-  Box,
-  Button,
-  Container,
-  Paper,
-  Portal,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import { FC, useContext, useEffect, useRef, useState } from "react";
+import { FC, useContext, useEffect, useRef } from "react";
 import { NavContext } from "../utility/context/NavProvider";
-import SplitablePaper from "./SplitablePaper";
-
-const url =
-  "https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik";
+import ProjectCard from "./ProjectCard";
 
 type Props = {};
 
@@ -26,8 +15,6 @@ const Projects: FC<Props> = (props) => {
       navRef.current?.scrollIntoView();
     });
   }, [navRef]);
-
-  const [isSplit, setIsSplit] = useState(false);
 
   return (
     <>
@@ -48,47 +35,11 @@ const Projects: FC<Props> = (props) => {
           onViewportEnter={() => {
             setNavValue("projects");
           }}
-          viewport={{ amount: "all" }}
-          whileInView={{ scale: 1.025 }}
         >
-          <SplitablePaper
-            width="1000px"
-            height="600px"
-            elevation={6}
-            borderRadius={16}
-            splitDirection="vertical"
-            animate={isSplit ? "split" : "joined"}
-          >
-            <Paper sx={{ flex: 1 }}>
-              <Stack height="100%" justifyContent="center" alignItems="center">
-                <Typography variant="h4" display="block">
-                  DoomScroll
-                </Typography>
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    setIsSplit(!isSplit);
-                    window.open(url, "_blank");
-                  }}
-                >
-                  View Project
-                </Button>
-              </Stack>
-            </Paper>
-            <Paper
-              sx={{
-                flex: 2,
-                overflow: "clip",
-              }}
-            >
-              <iframe
-                src={url}
-                width="100%"
-                height="100%"
-                style={{ border: "none" }}
-              />
-            </Paper>
-          </SplitablePaper>
+          <ProjectCard
+            name="DoomScroll"
+            url="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
+          />
         </Stack>
       </Container>
     </>

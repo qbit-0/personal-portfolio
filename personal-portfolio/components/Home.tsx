@@ -1,5 +1,4 @@
 import { Box, Container, Paper, Typography } from "@mui/material";
-import { Canvas } from "@react-three/fiber";
 import { motion } from "framer-motion";
 import { FC, useContext, useEffect, useRef } from "react";
 import { NavContext } from "../utility/context/NavProvider";
@@ -37,7 +36,6 @@ const Home: FC<Props> = (props) => {
         onViewportEnter={() => {
           setNavValue("home");
         }}
-        viewport={{ amount: "some" }}
       >
         <Box position="absolute" width="100%" height="100%">
           <HomeCanvas />
@@ -47,7 +45,7 @@ const Home: FC<Props> = (props) => {
             variant="outlined"
             sx={{
               bgcolor: "transparent",
-              backdropFilter: "blur(2px) brightness(105%)",
+              backdropFilter: "blur(2px) brightness(200%)",
             }}
           >
             <NavBar orientation="vertical" />
@@ -61,10 +59,11 @@ const Home: FC<Props> = (props) => {
             py: 8,
             display: "flex",
             alignItems: "center",
+            pointerEvents: "none",
           }}
         >
           <Typography variant="h1" fontWeight="bold" fontSize={120}>
-            Hi, I'm <span style={{ color: "orange" }}>Duy</span>
+            Hi, I'm <span style={{ color: "red" }}>Duy</span>
             . <br /> Your Front-End Web Developer.
           </Typography>
         </Container>

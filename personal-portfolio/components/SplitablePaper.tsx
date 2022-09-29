@@ -113,7 +113,11 @@ const SplitablePaper: FC<Props> = (props) => {
               split: splitPaperVariant,
             };
 
-            const { children: childChildren, ...otherChildProps } = child.props;
+            const {
+              children: childChildren,
+              elevation: childElevation,
+              ...otherChildProps
+            } = child.props;
 
             return (
               <Box
@@ -129,8 +133,12 @@ const SplitablePaper: FC<Props> = (props) => {
               >
                 <Paper
                   component={motion.div}
+                  elevation={
+                    animate === "split" && childElevation !== undefined
+                      ? childElevation
+                      : elevation
+                  }
                   {...otherChildProps}
-                  elevation={24}
                   sx={{
                     ...otherChildProps.sx,
                     position: "absolute",
@@ -144,8 +152,8 @@ const SplitablePaper: FC<Props> = (props) => {
                 />
                 <Paper
                   component={motion.div}
-                  {...otherChildProps}
                   elevation={0}
+                  {...otherChildProps}
                   sx={{
                     ...otherChildProps.sx,
                     position: "absolute",

@@ -1,6 +1,14 @@
-import { Box, Container, Paper, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  ClickAwayListener,
+  Container,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { motion } from "framer-motion";
-import { FC, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { FC, useContext, useEffect, useRef, useState } from "react";
 import { NavContext } from "../utility/context/NavProvider";
 import SplitablePaper from "./SplitablePaper";
 
@@ -45,8 +53,45 @@ const Skills: FC<Props> = (props) => {
     }
   }, [isSplit1]);
 
+  const [hoverItem, setHoverItem] = useState<string | null>(null);
+
+  let leftPanel: JSX.Element;
+  switch (hoverItem) {
+    case "react":
+      leftPanel = (
+        <Typography variant="h2" fontSize={96} fontWeight="bold">
+          React
+        </Typography>
+      );
+      break;
+    case "typescript":
+      leftPanel = (
+        <Typography variant="h2" fontSize={96} fontWeight="bold">
+          TypeScript
+        </Typography>
+      );
+      break;
+    default:
+      leftPanel = (
+        <Box
+          component="div"
+          width="100%"
+          height="100%"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Typography variant="h2" fontSize={96} fontWeight="bold">
+            SKILLS
+          </Typography>
+        </Box>
+      );
+      break;
+  }
+
   return (
     <Container
+      component={motion.div}
       ref={navRef}
       sx={{
         minHeight: "100vh",
@@ -55,49 +100,55 @@ const Skills: FC<Props> = (props) => {
         alignItems: "center",
         my: 16,
       }}
+      onViewportEnter={() => {
+        setNavValue("skills");
+      }}
     >
-      <Box>
+      <ClickAwayListener onClickAway={() => setHoverItem(null)}>
         <Stack
           direction="row"
           justifyContent="center"
           alignItems="center"
           spacing={8}
         >
-          <Typography variant="h2" fontSize={96} fontWeight="bold">
-            SKILLS
-          </Typography>
-          <Stack
-            component={motion.div}
-            spacing={8}
+          <Paper
+            elevation={hoverItem === null ? 0 : 6}
+            sx={{ width: "500px", height: "500px" }}
+          >
+            {leftPanel}
+          </Paper>
+          <SplitablePaper
+            width="500px"
+            height="500px"
+            elevation={6}
+            splitDirection="vertical"
+            spacing={4}
+            animate={isSplit1 ? "split" : "joined"}
             onViewportEnter={() => {
-              setNavValue("skills");
+              setIsSplit1(true);
+            }}
+            onViewportLeave={() => {
+              setIsSplit1(false);
             }}
             viewport={{ amount: "all" }}
           >
             <SplitablePaper
-              width="600px"
-              height="600px"
-              elevation={6}
-              borderRadius={16}
-              splitDirection="vertical"
+              flex={3}
+              splitDirection="horizontal"
               spacing={4}
-              animate={isSplit1 ? "split" : "joined"}
-              onViewportEnter={() => {
-                setIsSplit1(true);
-              }}
-              onViewportLeave={() => {
-                setIsSplit1(false);
-              }}
-              viewport={{ amount: "all" }}
+              animate={isSplit2 ? "split" : "joined"}
             >
-              <SplitablePaper
-                flex={3}
-                borderRadius={16}
-                splitDirection="horizontal"
-                spacing={4}
-                animate={isSplit2 ? "split" : "joined"}
+              <Paper
+                component={motion.div}
+                elevation={hoverItem === "react" ? 12 : undefined}
+                sx={{ flex: 1, overflow: "clip" }}
               >
-                <Paper sx={{ flex: 1, overflow: "clip" }}>
+                <Button
+                  onClick={() => {
+                    setHoverItem("react");
+                  }}
+                  sx={{ width: "100%", height: "100%", p: 0 }}
+                >
                   <img
                     src={"/images/react-1.svg"}
                     style={{
@@ -107,8 +158,19 @@ const Skills: FC<Props> = (props) => {
                       objectPosition: "center",
                     }}
                   />
-                </Paper>
-                <Paper sx={{ flex: 2, overflow: "clip" }}>
+                </Button>
+              </Paper>
+              <Paper
+                component={motion.div}
+                elevation={hoverItem === "typescript" ? 12 : undefined}
+                sx={{ flex: 2, overflow: "clip" }}
+              >
+                <Button
+                  onClick={() => {
+                    setHoverItem("typescript");
+                  }}
+                  sx={{ width: "100%", height: "100%", p: 0 }}
+                >
                   <img
                     src={"/images/typescript-design-assets/ts-logo-128.svg"}
                     style={{
@@ -118,22 +180,21 @@ const Skills: FC<Props> = (props) => {
                       objectPosition: "center",
                     }}
                   />
-                </Paper>
-              </SplitablePaper>
-              <SplitablePaper
-                flex={2}
-                borderRadius={16}
-                splitDirection="horizontal"
-                spacing={4}
-                animate={isSplit3 ? "split" : "joined"}
-              >
-                <Paper sx={{ flex: 1 }}>Next.js</Paper>
-                <Paper sx={{ flex: 1 }}>Three.js</Paper>
-              </SplitablePaper>
+                </Button>
+              </Paper>
             </SplitablePaper>
-          </Stack>
+            <SplitablePaper
+              flex={2}
+              splitDirection="horizontal"
+              spacing={4}
+              animate={isSplit3 ? "split" : "joined"}
+            >
+              <Paper sx={{ flex: 1 }}>Next.js</Paper>
+              <Paper sx={{ flex: 1 }}>Three.js</Paper>
+            </SplitablePaper>
+          </SplitablePaper>
         </Stack>
-      </Box>
+      </ClickAwayListener>
     </Container>
   );
 };

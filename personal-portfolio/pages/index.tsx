@@ -13,7 +13,7 @@ type HomeProps = {};
 const Index: FC<HomeProps> = (props) => {
   return (
     <NavProvider>
-      <Box minHeight="100vh">
+      <Box component="div" minHeight="100vh">
         <FixedNavBar />
         <Home />
         <About />

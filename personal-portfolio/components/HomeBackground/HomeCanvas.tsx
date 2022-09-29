@@ -6,7 +6,7 @@ type Props = {};
 
 const HomeCanvas: FC<Props> = (props) => {
   return (
-    <Canvas shadows camera={{ position: [0, 1, 5], fov: 75 }}>
+    <Canvas shadows camera={{ position: [0, 1, 5], fov: 60 }}>
       <HomeScene />
     </Canvas>
   );

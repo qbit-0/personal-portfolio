@@ -39,8 +39,7 @@ const Contact: FC<Props> = (props) => {
           onViewportEnter={() => {
             setNavValue("contact");
           }}
-          viewport={{ amount: "some" }}
-          sx={{ borderRadius: 8, p: 4 }}
+          sx={{ p: 4 }}
         >
           <Stack spacing={2}>
             <Stack direction="row" spacing={2}>

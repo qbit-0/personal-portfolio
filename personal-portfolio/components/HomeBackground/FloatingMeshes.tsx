@@ -1,84 +1,93 @@
+import { Physics } from "@react-three/cannon";
 import { useFrame } from "@react-three/fiber";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 
-import * as THREE from "three";
 import useInterval from "../../utility/hooks/useInterval";
 import { getRandomRange } from "../../utility/numberUtils";
-import FloatingSphere from "./FloatingSphere";
+import FloatingMesh, { FloatingMeshProps } from "./FloatingMesh";
 
-const initialMeshesCount = 5;
+const initialMeshesCount = 10;
 
 type Props = {};
 
 const FloatingMeshes: FC<Props> = (props) => {
-  const [meshes, setMeshes] = useState<JSX.Element[]>([]);
+  const [meshesProps, setMeshesProps] = useState<FloatingMeshProps[]>([]);
   const [count, setCount] = useState(0);
 
-  const removeMesh = (target: JSX.Element) => {
-    // setMeshes(meshes);
+  const removeMeshProps = (meshId: number) => {
+    setMeshesProps(
+      meshesProps.filter((meshProps) => meshProps.meshId !== meshId)
+    );
   };
 
-  const spawnMesh = () => {
-    const mesh = (
-      <FloatingSphere
-        key={count}
-        removeMesh={removeMesh}
-        scale={getRandomRange(1, 3)}
-        position={[
-          getRandomRange(-15, 15),
-          getRandomRange(-20, -15),
-          getRandomRange(-20, 3.5),
-        ]}
-        rotation={
-          new THREE.Euler(
-            getRandomRange(0, Math.PI * 2),
-            getRandomRange(0, Math.PI * 2),
-            getRandomRange(0, Math.PI * 2)
-          )
-        }
-      />
-    );
+  const addMeshProps = () => {
+    const meshProps: FloatingMeshProps = {
+      meshId: count,
+      scale: getRandomRange(0.5, 4),
+      position: [
+        getRandomRange(-30, 30),
+        getRandomRange(-20, -20),
+        getRandomRange(-60, 2),
+      ],
+      rotation: [
+        getRandomRange(0, Math.PI * 2),
+        getRandomRange(0, Math.PI * 2),
+        getRandomRange(0, Math.PI * 2),
+      ],
+    };
 
-    setMeshes([...meshes, mesh]);
+    setMeshesProps([...meshesProps, meshProps]);
     setCount(count + 1);
   };
 
   useEffect(() => {
-    const initialMeshes: JSX.Element[] = [];
+    const initialMeshesProps: FloatingMeshProps[] = [];
     for (let i = 0; i < initialMeshesCount; i++) {
-      const mesh = (
-        <FloatingSphere
-          key={count}
-          removeMesh={removeMesh}
-          scale={getRandomRange(1, 3)}
-          position={[
-            getRandomRange(-15, 15),
-            getRandomRange(-20, 5),
-            getRandomRange(-20, 4),
-          ]}
-          rotation={
-            new THREE.Euler(
-              getRandomRange(0, Math.PI * 2),
-              getRandomRange(0, Math.PI * 2),
-              getRandomRange(0, Math.PI * 2)
-            )
-          }
-        />
-      );
-      initialMeshes.push(mesh);
+      const meshProps: FloatingMeshProps = {
+        meshId: count + i,
+        scale: getRandomRange(0.5, 4),
+        position: [
+          getRandomRange(-30, 30),
+          getRandomRange(-10, 5),
+          getRandomRange(-60, 2),
+        ],
+        rotation: [
+          getRandomRange(0, Math.PI * 2),
+          getRandomRange(0, Math.PI * 2),
+          getRandomRange(0, Math.PI * 2),
+        ],
+      };
+
+      initialMeshesProps.push(meshProps);
     }
 
-    setMeshes(initialMeshes);
-    setCount(initialMeshesCount + 1);
+    setMeshesProps(initialMeshesProps);
+    setCount(count + initialMeshesCount + 1);
   }, []);
 
   useInterval(() => {
-    spawnMesh();
-  }, 4000);
+    addMeshProps();
+  }, 1000);
 
-  useFrame((state) => {});
+  useFrame(() => {});
 
-  return <>{meshes}</>;
+  const meshes: JSX.Element[] = useMemo(
+    () =>
+      meshesProps.map((meshProps, index) => {
+        return (
+          <FloatingMesh
+            {...meshProps}
+            key={meshProps.meshId}
+            removeSelf={() => {
+              removeMeshProps(meshProps.meshId);
+            }}
+          />
+        );
+      }),
+    [meshesProps]
+  );
+
+  return <Physics gravity={[0, 0, 0]}>{meshes}</Physics>;
 };
 
 export default FloatingMeshes;

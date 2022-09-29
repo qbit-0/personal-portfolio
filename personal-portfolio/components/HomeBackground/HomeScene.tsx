@@ -1,26 +1,36 @@
+import { Environment } from "@react-three/drei";
+import { BackSide } from "three";
 import FloatingMeshes from "./FloatingMeshes";
+import MousePanControls from "./MousePanControls";
+import PanningPointLight from "./PanningPointLight";
 
 type Props = {};
 
 const HomeScene = (props: Props) => {
   return (
     <>
-      <fog attach="fog" args={["white", 0, 60]} />
-      <ambientLight intensity={0.3} />
-      <directionalLight intensity={2} position={[-10, 10, 5]} castShadow />
-      <pointLight intensity={1} color="red" position={[0, 0, 5]} />
+      <MousePanControls />
+      <Environment preset="warehouse" />
+      <fog attach="fog" args={["white", 0, 100]} />
+      <ambientLight intensity={0.2} />
+      <directionalLight intensity={1} position={[-10, 10, 10]} castShadow />
+      <PanningPointLight />
       <FloatingMeshes />
-      <mesh rotation={[-Math.PI / 2, 0, Math.PI / 3]} position={[0, 5, 0]}>
+      <mesh rotation={[-Math.PI / 2, 0, Math.PI / 3]} position={[0, 10, 0]}>
         <planeGeometry args={[1000, 1000, 250, 250]} />
-        <meshStandardMaterial color="gray" wireframe />
+        <meshBasicMaterial color="black" side={BackSide} />
       </mesh>
-      <mesh rotation={[-Math.PI / 2, 0, Math.PI / 3]} position={[0, -20, 0]}>
+      {/* <mesh rotation={[-Math.PI / 2, 0, Math.PI / 3]} position={[0, 4, 0]}>
         <planeGeometry args={[1000, 1000, 250, 250]} />
-        <meshStandardMaterial wireframe color="gray" />
-      </mesh>
-      <mesh rotation={[-Math.PI / 2, 0, Math.PI / 3]} position={[0, -25, 0]}>
+        <meshBasicMaterial color="gray" wireframe />
+      </mesh> */}
+      {/* <mesh rotation={[-Math.PI / 2, 0, Math.PI / 3]} position={[0, -20, 0]}>
         <planeGeometry args={[1000, 1000, 250, 250]} />
-        <meshStandardMaterial color="gray" />
+        <meshBasicMaterial color="gray" wireframe />
+      </mesh> */}
+      <mesh rotation={[-Math.PI / 2, 0, Math.PI / 3]} position={[0, -40, 0]}>
+        <planeGeometry args={[1000, 1000, 250, 250]} />
+        <meshBasicMaterial color="black" />
       </mesh>
     </>
   );
