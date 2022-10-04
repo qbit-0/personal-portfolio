@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { FC } from "react";
 import About from "../components/About";
+import Competition from "../components/Competition";
 import Contact from "../components/Contact";
 import FixedNavBar from "../components/FixedNavBar";
 import Home from "../components/Home";
@@ -17,6 +18,7 @@ const Index: FC<HomeProps> = (props) => {
         <FixedNavBar />
         <Home />
         <About />
+        <Competition />
         <Projects />
         <Skills />
         <Contact />

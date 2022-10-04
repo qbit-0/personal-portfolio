@@ -1,8 +1,13 @@
 import { useSphere } from "@react-three/cannon";
+import {
+  MeshDistortMaterial,
+  MeshWobbleMaterial,
+  Trail,
+} from "@react-three/drei";
 import { ThreeElements, useFrame } from "@react-three/fiber";
 import { FC, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import { getRandomRange } from "../../utility/numberUtils";
+import { getRandomRange } from "../../utility/other/numberUtils";
 
 const wireframeColors = ["red", "white", "gray", "black"];
 const shellColors = ["red", "white", "gray", "black"];
@@ -51,90 +56,67 @@ const FloatingMesh: FC<FloatingMeshProps> = ({
   const innerShellGeometryRef = useRef<THREE.BufferGeometry>(null!);
 
   const [wireframeGeometry, shellGeometry, innerShellGeometry] = useMemo(() => {
+    const wireframeGeometryProps = {
+      ref: wireframeGeometryRef as any,
+      drawRange: { start: 0, count: 0 },
+    };
+    const shellGeometryProps = {
+      ref: shellGeometryRef as any,
+      drawRange: { start: 0, count: 0 },
+    };
+    const innerShellGeometryProps = {
+      ref: innerShellGeometryRef as any,
+      drawRange: { start: 0, count: 0 },
+    };
+
     const geometries = [
       () => [
         <sphereGeometry
-          args={[0.9, 8, 4, 0, Math.PI * 2, 0, Math.PI]}
-          ref={wireframeGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
+          args={[0.5, 8, 4, 0, Math.PI * 2, 0, Math.PI]}
+          {...wireframeGeometryProps}
         />,
         <sphereGeometry
           args={[1, 64, 32, 0, Math.PI * 2, 0, Math.PI]}
-          ref={shellGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
+          {...shellGeometryProps}
         />,
         <sphereGeometry
           args={[1, 64, 32, 0, Math.PI * 2, 0, Math.PI]}
-          ref={innerShellGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
+          {...innerShellGeometryProps}
         />,
       ],
       () => [
-        <boxGeometry
-          args={[0.9, 0.9, 0.9]}
-          ref={wireframeGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
-        />,
+        <boxGeometry args={[0.5, 0.5, 0.5]} {...wireframeGeometryProps} />,
+        <boxGeometry args={[1, 1, 1, 32, 32, 32]} {...shellGeometryProps} />,
         <boxGeometry
           args={[1, 1, 1, 32, 32, 32]}
-          ref={shellGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
-        />,
-        <boxGeometry
-          args={[1, 1, 1, 32, 32, 32]}
-          ref={innerShellGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
+          {...innerShellGeometryProps}
         />,
       ],
       () => [
-        <coneGeometry
-          args={[0.3, 0.9]}
-          ref={wireframeGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
-        />,
-        <coneGeometry
-          args={[0.33, 1, 32]}
-          ref={shellGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
-        />,
-        <coneGeometry
-          args={[0.33, 1, 32]}
-          ref={innerShellGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
-        />,
+        <coneGeometry args={[0.165, 0.165]} {...wireframeGeometryProps} />,
+        <coneGeometry args={[0.33, 1, 32]} {...shellGeometryProps} />,
+        <coneGeometry args={[0.33, 1, 32]} {...innerShellGeometryProps} />,
       ],
       () => [
         <cylinderGeometry
-          args={[0.315, 0.315, 0.9, 16]}
-          ref={wireframeGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
+          args={[0.175, 0.175, 0.9, 16, 1]}
+          {...wireframeGeometryProps}
         />,
         <cylinderGeometry
-          args={[0.35, 0.35, 1, 32]}
-          ref={shellGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
+          args={[0.35, 0.35, 1, 32, 32]}
+          {...shellGeometryProps}
         />,
         <cylinderGeometry
-          args={[0.35, 0.35, 1, 32]}
-          ref={innerShellGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
+          args={[0.35, 0.35, 1, 32, 32]}
+          {...innerShellGeometryProps}
         />,
       ],
       () => [
-        <torusGeometry
-          args={[0.8, 0.2, 4, 8]}
-          ref={wireframeGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
-        />,
+        <torusGeometry args={[0.8, 0.1, 4, 8]} {...wireframeGeometryProps} />,
+        <torusGeometry args={[0.8, 0.4, 32, 64]} {...shellGeometryProps} />,
         <torusGeometry
           args={[0.8, 0.4, 32, 64]}
-          ref={shellGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
-        />,
-        <torusGeometry
-          args={[0.8, 0.4, 32, 64]}
-          ref={innerShellGeometryRef as any}
-          drawRange={{ start: 0, count: 0 }}
+          {...innerShellGeometryProps}
         />,
       ],
     ];
@@ -164,10 +146,18 @@ const FloatingMesh: FC<FloatingMeshProps> = ({
       />
     );
     const shellMaterial = (
-      <meshStandardMaterial color={shellColor} roughness={0.5} metalness={1} />
+      <MeshDistortMaterial
+        distort={isHovered ? 0.75 : 0.5}
+        speed={isHovered ? 10 : 5}
+        color={shellColor}
+        roughness={0.5}
+        metalness={1}
+      />
     );
     const innerShellMaterial = (
-      <meshStandardMaterial
+      <MeshDistortMaterial
+        distort={isHovered ? 0.75 : 0.5}
+        speed={isHovered ? 10 : 5}
         color={shellColor}
         roughness={0.5}
         metalness={1}
@@ -193,15 +183,15 @@ const FloatingMesh: FC<FloatingMeshProps> = ({
         onPointerOver={handlePointerOver}
         onPointerOut={handlePointerOut}
       >
-        <mesh ref={wireframeMeshRef} castShadow receiveShadow>
+        <mesh ref={wireframeMeshRef}>
           {wireframeGeometry}
           {wireframeMaterial}
         </mesh>
-        <mesh ref={shellMeshRef} castShadow receiveShadow>
+        <mesh ref={shellMeshRef}>
           {shellGeometry}
           {shellMaterial}
         </mesh>
-        <mesh ref={innerShellMeshRef} receiveShadow>
+        <mesh ref={innerShellMeshRef}>
           {innerShellGeometry}
           {innerShellMaterial}
         </mesh>

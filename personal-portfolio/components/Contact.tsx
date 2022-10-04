@@ -1,4 +1,4 @@
-import { Email } from "@mui/icons-material";
+import { Email, GitHub } from "@mui/icons-material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Box, Container, Link, Paper, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
@@ -19,6 +19,7 @@ const Contact: FC<Props> = (props) => {
 
   return (
     <Container
+      component={motion.div}
       ref={navRef}
       sx={{
         position: "relative",
@@ -28,19 +29,15 @@ const Contact: FC<Props> = (props) => {
         justifyContent: "center",
         alignItems: "center",
       }}
+      onViewportEnter={() => {
+        setNavValue("contact");
+      }}
     >
-      <Box>
+      <Box component="div">
         <Typography variant="h2" fontSize={96} fontWeight="bold">
           CONTACT
         </Typography>
-        <Paper
-          component={motion.div}
-          elevation={6}
-          onViewportEnter={() => {
-            setNavValue("contact");
-          }}
-          sx={{ p: 4 }}
-        >
+        <Paper elevation={6} sx={{ p: 4 }}>
           <Stack spacing={2}>
             <Stack direction="row" spacing={2}>
               <Email />
@@ -57,11 +54,18 @@ const Contact: FC<Props> = (props) => {
                 </Typography>
               </Link>
             </Stack>
+
+            <Stack direction="row" spacing={2}>
+              <GitHub />
+              <Link>
+                <Typography>https://github.com/qbit-0/</Typography>
+              </Link>
+            </Stack>
           </Stack>
         </Paper>
       </Box>
-      <Box position="absolute" left={0} bottom={0}>
-        <Box p={2}>
+      <Box component="div" position="absolute" left={0} bottom={0}>
+        <Box component="div" p={2}>
           <Typography>
             Designed and built by{" "}
             <Link
@@ -72,7 +76,18 @@ const Contact: FC<Props> = (props) => {
             >
               me
             </Link>
-            .
+            .{" "}
+            <Link
+              onClick={() => {
+                window.open(
+                  "https://github.com/qbit-0/personal-portfolio",
+                  "_blank"
+                );
+              }}
+            >
+              Source code
+            </Link>{" "}
+            for the curious.
           </Typography>
         </Box>
       </Box>

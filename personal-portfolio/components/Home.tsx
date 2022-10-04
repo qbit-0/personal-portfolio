@@ -19,6 +19,7 @@ const Home: FC<Props> = (props) => {
 
   return (
     <Box
+      component="div"
       ref={navRef}
       position="relative"
       top={0}
@@ -37,10 +38,10 @@ const Home: FC<Props> = (props) => {
           setNavValue("home");
         }}
       >
-        <Box position="absolute" width="100%" height="100%">
+        <Box component="div" position="absolute" width="100%" height="100%">
           <HomeCanvas />
         </Box>
-        <Box position="absolute" display="flex" p={4}>
+        <Box component="div" position="absolute" display="flex" p={4}>
           <Paper
             variant="outlined"
             sx={{

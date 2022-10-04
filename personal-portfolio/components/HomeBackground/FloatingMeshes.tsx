@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { FC, useEffect, useMemo, useState } from "react";
 
 import useInterval from "../../utility/hooks/useInterval";
-import { getRandomRange } from "../../utility/numberUtils";
+import { getRandomRange } from "../../utility/other/numberUtils";
 import FloatingMesh, { FloatingMeshProps } from "./FloatingMesh";
 
 const initialMeshesCount = 10;

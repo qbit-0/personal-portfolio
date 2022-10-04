@@ -1,22 +1,25 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { FC, useEffect } from "react";
 import { MathUtils } from "three";
-import { scale } from "../../utility/numberUtils";
+import { scale } from "../../utility/other/numberUtils";
 
-const positionConstraints = [
-  [-1, 1],
-  [0, 2],
-  [5, 10],
+export type AxisConstraint = [number, number];
+export type PositionConstraints = [
+  x: AxisConstraint,
+  y: AxisConstraint,
+  z: AxisConstraint
 ];
+export type RotationConstraints = [x: AxisConstraint, y: AxisConstraint];
 
-const rotationConstraints = [
-  [-Math.PI / 8, -Math.PI / 9],
-  [Math.PI / 32, -Math.PI / 32],
-];
+type Props = {
+  positionConstraints: PositionConstraints;
+  rotationConstraints: RotationConstraints;
+};
 
-type Props = {};
-
-const MousePanControls: FC<Props> = (props) => {
+const MousePanControls: FC<Props> = ({
+  positionConstraints,
+  rotationConstraints,
+}) => {
   const { camera } = useThree();
 
   useEffect(() => {

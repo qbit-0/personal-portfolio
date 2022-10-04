@@ -6,6 +6,7 @@ import React, { FC } from "react";
 type Props = StackProps &
   PropsOf<typeof motion.div> & {
     children?: JSX.Element | JSX.Element[];
+    fullPaperOverlay?: JSX.Element;
     elevation?: number;
     borderRadius?: number;
     paperCorners?: any;
@@ -18,6 +19,7 @@ type Props = StackProps &
 const SplitablePaper: FC<Props> = (props) => {
   const {
     children,
+    fullPaperOverlay = null,
     elevation = 1,
     borderRadius = 2,
     paperCorners,
@@ -46,6 +48,7 @@ const SplitablePaper: FC<Props> = (props) => {
   return (
     <Stack
       component={motion.div}
+      position="relative"
       direction={splitDirection === "vertical" ? "row" : "column"}
       variants={variants}
       initial={initial}
@@ -184,6 +187,25 @@ const SplitablePaper: FC<Props> = (props) => {
             console.log(child?.type.name);
         }
       })}
+      {fullPaperOverlay && (
+        <Box
+          component={motion.div}
+          position="absolute"
+          width="100%"
+          height="100%"
+          variants={{
+            joined: { opacity: 100, transition: { duration: 0.25 } },
+            split: {
+              opacity: 0,
+              transition: { duration: 0.25 },
+            },
+          }}
+          sx={{ pointerEvents: animate === "split" ? "none" : "auto" }}
+          animate={animate}
+        >
+          {fullPaperOverlay}
+        </Box>
+      )}
     </Stack>
   );
 };

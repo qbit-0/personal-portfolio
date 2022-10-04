@@ -7,7 +7,14 @@ import {
   useState,
 } from "react";
 
-const NavValues = ["home", "about", "projects", "skills", "contact"] as const;
+const NavValues = [
+  "home",
+  "about",
+  "competition",
+  "projects",
+  "skills",
+  "contact",
+] as const;
 export type NavValue = typeof NavValues[number];
 type NavCallbacks = Record<
   NavValue,

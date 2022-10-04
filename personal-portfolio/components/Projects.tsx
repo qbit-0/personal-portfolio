@@ -19,6 +19,7 @@ const Projects: FC<Props> = (props) => {
   return (
     <>
       <Container
+        component={motion.div}
         ref={navRef}
         sx={{
           minHeight: "100vh",
@@ -39,6 +40,11 @@ const Projects: FC<Props> = (props) => {
           <ProjectCard
             name="DoomScroll"
             url="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
+          />
+          <ProjectCard
+            name="DoomScroll"
+            url="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
+            flipped
           />
         </Stack>
       </Container>

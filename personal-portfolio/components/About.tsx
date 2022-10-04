@@ -1,10 +1,10 @@
 import {
+  Avatar,
   Box,
   Container,
   Paper,
+  Slider,
   Stack,
-  Tab,
-  Tabs,
   Typography,
 } from "@mui/material";
 import { motion } from "framer-motion";
@@ -17,6 +17,9 @@ import {
   useState,
 } from "react";
 import { NavContext } from "../utility/context/NavProvider";
+import AboutCanvas from "./AboutBackground/AboutCanvas";
+import Sample from "./Sample/Sample";
+import SampleContent from "./Sample/SampleContent";
 
 type Props = {};
 
@@ -30,15 +33,15 @@ const About: FC<Props> = (props) => {
     });
   }, [navRef]);
 
-  const [section, setSection] = useState("past");
+  const [page, setPage] = useState(0);
 
   const handleSectionChange = (event: SyntheticEvent, value: any) => {
-    setSection(value);
+    setPage(value);
   };
 
   let aboutContent: JSX.Element = <></>;
-  switch (section) {
-    case "past":
+  switch (page) {
+    case 1:
       aboutContent = (
         <Typography maxWidth={1000} variant="h5">
           I was born in Vietnam, and I emigrated to the US when I was eight
@@ -52,7 +55,7 @@ const About: FC<Props> = (props) => {
       );
       break;
 
-    case "informalEducation":
+    case 2:
       aboutContent = (
         <Typography maxWidth={1000} variant="h5">
           My first experience with programming started as just a hobby. During
@@ -64,7 +67,7 @@ const About: FC<Props> = (props) => {
         </Typography>
       );
       break;
-    case "competition":
+    case 3:
       aboutContent = (
         <Typography maxWidth={1000} variant="h5">
           If there's one thing I'm known for, it's probably my obsession with
@@ -89,7 +92,7 @@ const About: FC<Props> = (props) => {
         </Typography>
       );
       break;
-    case "competition2":
+    case 4:
       aboutContent = (
         <Typography maxWidth={1000} variant="h5">
           My competitive spirit didn't die out in High School. When I eventually
@@ -109,62 +112,38 @@ const About: FC<Props> = (props) => {
   }
 
   return (
-    <Container
-      ref={navRef}
-      sx={{
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        my: 16,
-      }}
-    >
-      <Box component="div">
-        <Typography variant="h2" fontSize={96} fontWeight="bold">
-          MY STORY
-        </Typography>
-        <Stack spacing={2}>
-          <Paper
-            component={motion.div}
-            elevation={6}
-            sx={{
-              p: 4,
-            }}
-            onViewportEnter={() => {
-              setNavValue("about");
-            }}
-          >
-            <Typography maxWidth={1000} variant="h5">
-              Welcome to my portfolio! I'm a font-end React developer currently
-              looking for a full-time job.
-            </Typography>
-          </Paper>
-          <Paper
-            component={motion.div}
-            elevation={6}
-            sx={{
-              p: 4,
-            }}
-            onViewportEnter={() => {
-              setNavValue("about");
-            }}
-            viewport={{ amount: "all" }}
-          >
-            <Tabs value={section} onChange={handleSectionChange}>
-              <Tab label="A Bit of My Past" value="past" />
-              <Tab label="Informal Education" value="informalEducation" />
-              <Tab label="STEM Club" value="competition" />
-              <Tab label="IEEE Projects" value="competition2" />
-              {/* <Tab label="Other Interests" value="interests" /> */}
-              {/* <Tab label="A Bit of My Future" value="future" /> */}
-            </Tabs>
-            <Box component="div" mt={2}>
-              {aboutContent}
-            </Box>
-          </Paper>
-        </Stack>
-      </Box>
-    </Container>
+    <>
+      <Container
+        ref={navRef}
+        sx={{
+          minHeight: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          my: 16,
+        }}
+      >
+        <Box
+          component={motion.div}
+          zIndex={2000}
+          onViewportEnter={() => {
+            setNavValue("about");
+          }}
+        >
+          <Typography variant="h2" fontSize={96} fontWeight="bold">
+            ABOUT
+          </Typography>
+          <Typography variant="h5" fontWeight="bold">
+            I became addicted to programming since middle school, staying up
+            late at night learning Python on Codecademy. I've never stopped
+            since. Now, I'm a front-end web developer specializing in React.
+            <br />
+            <br />I build beautiful and responsive websites.
+          </Typography>
+          <Sample />
+        </Box>
+      </Container>
+    </>
   );
 };
 

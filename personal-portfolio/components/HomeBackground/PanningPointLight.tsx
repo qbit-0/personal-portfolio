@@ -23,7 +23,7 @@ const PanningPointLight = (props: Props) => {
       ref={lightRef}
       intensity={2}
       color="white"
-      position={[0, 1, 5]}
+      position={[0, 0, 5]}
       decay={2}
       castShadow
     />

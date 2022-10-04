@@ -4,7 +4,8 @@ import { NavContext, NavValue } from "../utility/context/NavProvider";
 
 const navLabels: Record<NavValue, string> = {
   home: "Home",
-  about: "My Story",
+  about: "About",
+  competition: "Competition",
   projects: "Projects",
   skills: "Skills",
   contact: "Contact",
