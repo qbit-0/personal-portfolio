@@ -1,4 +1,4 @@
-import { AddComment, BookmarkAdd } from "@mui/icons-material";
+import { AddComment, BookmarkAdd, BookmarkAdded } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Avatar,
@@ -8,18 +8,60 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { FC } from "react";
+import { FC, useContext, useMemo } from "react";
 
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import { Account, Post } from "../../utility/context/SampleProvider";
+import {
+  Account,
+  Post,
+  SampleContext,
+} from "../../utility/context/SampleProvider";
 import { getElapsedString } from "../../utility/other/getElapsedString";
 
 type Props = {
   account: Account;
-  post: Post;
+  post?: Post;
 };
 
 const SamplePost: FC<Props> = ({ account, post }) => {
+  const {
+    userAccountId,
+    getAccount,
+    deletePost,
+    likePost,
+    unlikePost,
+    savePost,
+    unsavePost,
+  } = useContext(SampleContext);
+
+  if (post === undefined) return null;
+
+  const userAccount = getAccount(userAccountId);
+
+  const isLiked = userAccount.liked.has(post.postId);
+  const isSaved = userAccount.saved.has(post.postId);
+  const isAuthor = post.author === userAccountId;
+
+  const handleLike = () => {
+    if (isLiked) {
+      unlikePost(userAccountId, post.postId);
+    } else {
+      likePost(userAccountId, post.postId);
+    }
+  };
+
+  const handleSave = () => {
+    if (isSaved) {
+      unsavePost(userAccountId, post.postId);
+    } else {
+      savePost(userAccountId, post.postId);
+    }
+  };
+
+  const handleDelete = () => {
+    deletePost(post.postId);
+  };
+
   return (
     <Stack direction="row" spacing={2}>
       <Paper
@@ -36,7 +78,9 @@ const SamplePost: FC<Props> = ({ account, post }) => {
         <Stack direction="row" spacing={1}>
           <Typography>{account.name}</Typography>
           <Typography>@{account.username}</Typography>
-          <Typography>{getElapsedString(post.createdAt)}</Typography>
+          <Typography color="gray">
+            {getElapsedString(post.createdAt)}
+          </Typography>
         </Stack>
         <Typography>{post.text}</Typography>
         {post.image && (
@@ -48,15 +92,23 @@ const SamplePost: FC<Props> = ({ account, post }) => {
           <IconButton>
             <AddComment />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={handleLike}
+            color={isLiked ? "success" : "default"}
+          >
             <ThumbUpIcon />
           </IconButton>
-          <IconButton>
-            <BookmarkAdd />
+          <IconButton
+            onClick={handleSave}
+            color={isSaved ? "success" : "default"}
+          >
+            {isSaved ? <BookmarkAdded /> : <BookmarkAdd />}
           </IconButton>
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
+          {isAuthor && (
+            <IconButton onClick={handleDelete}>
+              <DeleteIcon />
+            </IconButton>
+          )}
         </Stack>
       </Stack>
     </Stack>

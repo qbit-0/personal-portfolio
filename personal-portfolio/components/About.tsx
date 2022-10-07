@@ -125,7 +125,6 @@ const About: FC<Props> = (props) => {
       >
         <Box
           component={motion.div}
-          zIndex={2000}
           onViewportEnter={() => {
             setNavValue("about");
           }}

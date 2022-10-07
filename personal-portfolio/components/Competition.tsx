@@ -1,7 +1,26 @@
-import { Box, Container, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionSummary,
+  Box,
+  Chip,
+  Container,
+  Divider,
+  ImageList,
+  ImageListItem,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { motion } from "framer-motion";
 import { FC, useContext, useEffect, useRef } from "react";
 import { NavContext } from "../utility/context/NavProvider";
+
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CustomImageListItem from "./CustomImageListItem";
+import NEDC from "./CompetitiveProjects/NEDC";
+import Petri from "./CompetitiveProjects/Petri";
+import Gauntlet from "./CompetitiveProjects/Gauntlet";
+import Soccerbot from "./CompetitiveProjects/Soccerbot";
+import RoboCup from "./CompetitiveProjects/RoboCup";
 
 type Props = {};
 
@@ -28,20 +47,23 @@ const Competition: FC<Props> = (props) => {
     >
       <Box
         component={motion.div}
-        zIndex={2000}
         onViewportEnter={() => {
           setNavValue("competition");
         }}
       >
         <Typography variant="h2" fontSize={96} fontWeight="bold">
-          COMPETITION
+          COMPETITION / FUN
         </Typography>
         <Typography variant="h5" fontWeight="bold">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi eum
-          tempore ea obcaecati quo eius officia laboriosam molestiae placeat
-          suscipit repudiandae nulla consectetur reprehenderit, aliquid
-          eligendi, neque consequuntur porro incidunt.
+          A longtime hobby of mine is participating in various engineering and
+          programming contests, usually with a team of my friends. Good times.
         </Typography>
+
+        <RoboCup />
+        <NEDC />
+        <Petri />
+        <Gauntlet />
+        <Soccerbot />
       </Box>
     </Container>
   );

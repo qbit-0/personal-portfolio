@@ -10,6 +10,8 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import darkThemeOptions from "../styles/theme/darkThemeOptions";
+import { enableMapSet } from "immer";
+import { useEffect } from "react";
 
 type MyAppProps = AppProps & {
   emotionCache?: EmotionCache;
@@ -21,6 +23,9 @@ const darkTheme = createTheme(darkThemeOptions);
 
 const MyApp: React.FC<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  useEffect(() => {
+    enableMapSet();
+  }, []);
 
   return (
     <CacheProvider value={emotionCache}>

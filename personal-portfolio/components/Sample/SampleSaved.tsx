@@ -1,31 +1,41 @@
-import { Divider, Stack } from "@mui/material";
-import { FC, useContext, useMemo } from "react";
+import { Box, Divider, Stack } from "@mui/material";
+import { FC, useContext } from "react";
 import { Post, SampleContext } from "../../utility/context/SampleProvider";
 import SamplePost from "./SamplePost";
 
-type Props = { accountId: number };
+type Props = {};
 
-const SampleSaved: FC<Props> = ({ accountId }) => {
-  const { accounts, getAccount, getPost } = useContext(SampleContext);
+const SampleSaved: FC<Props> = ({}) => {
+  const { userAccountId, getAccount, getPost, targetWidth } =
+    useContext(SampleContext);
 
-  const account = useMemo(() => getAccount(accountId), [accountId]);
+  const userAccount = getAccount(userAccountId);
 
-  const accountPosts = useMemo(() => {
-    const accountPosts: Post[] = [];
-    account.saved.forEach((postId) => {
-      accountPosts.push(getPost(postId));
-    });
-    return accountPosts;
-  }, [account]);
+  const accountPosts: Post[] = [];
+  userAccount.saved.forEach((postId) => {
+    accountPosts.push(getPost(postId));
+  });
 
   return (
-    <>
+    <Box
+      component="div"
+      width="100%"
+      height="100%"
+      pt={targetWidth >= 1024 ? 0 : 8}
+      pb={targetWidth >= 1024 ? 4 : 8}
+      overflow="auto"
+      flex={1}
+    >
       <Stack spacing={2} mx={2} py={2} divider={<Divider />}>
-        {accountPosts.map((post, index) => (
-          <SamplePost account={account} post={post} key={index} />
+        {accountPosts.reverse().map((post, index) => (
+          <SamplePost
+            account={getAccount(post.author)}
+            post={post}
+            key={index}
+          />
         ))}
       </Stack>
-    </>
+    </Box>
   );
 };
 

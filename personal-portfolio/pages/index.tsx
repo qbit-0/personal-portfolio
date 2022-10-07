@@ -18,9 +18,9 @@ const Index: FC<HomeProps> = (props) => {
         <FixedNavBar />
         <Home />
         <About />
-        <Competition />
         <Projects />
         <Skills />
+        <Competition />
         <Contact />
       </Box>
     </NavProvider>

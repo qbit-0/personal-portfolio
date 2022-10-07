@@ -1,5 +1,5 @@
 export const getElapsedString = (start: number) => {
-  const dateStart = new Date(start * 1000);
+  const dateStart = new Date(start);
   const dateNow = Date.now();
   const dateElapsed = dateNow.valueOf() - dateStart.valueOf();
 

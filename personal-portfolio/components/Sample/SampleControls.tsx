@@ -1,9 +1,14 @@
+import { Fullscreen } from "@mui/icons-material";
 import {
+  Box,
+  Button,
   FormControlLabel,
+  IconButton,
   Paper,
   Radio,
   RadioGroup,
   Slider,
+  Stack,
 } from "@mui/material";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
@@ -38,7 +43,7 @@ export const PRESET_WIDTHS: Record<DevicePreset, number> = {
   "4k": 2560,
 };
 
-export const DEFAULT_PRESET: DevicePreset = "mobile_l";
+export const DEFAULT_PRESET: DevicePreset = "tablet";
 
 export const MIN_DIM = 320;
 export const MAX_DIM = 2560;

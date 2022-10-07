@@ -29,6 +29,9 @@ const Projects: FC<Props> = (props) => {
         <Typography variant="h2" fontSize={96} fontWeight="bold">
           PROJECTS
         </Typography>
+        <Typography variant="h5" fontWeight="bold">
+          Projects related to web development.
+        </Typography>
         <Stack
           component={motion.div}
           spacing={8}

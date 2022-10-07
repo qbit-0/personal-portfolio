@@ -28,12 +28,16 @@ export type Post = {
 export type SampleContextType = {
   accounts: Record<number, Account>;
   posts: Record<number, Post>;
+  userAccountId: number;
   getAccount: (accountId: number) => Account;
   addPost: (postId: Omit<Post, "id" | "created">) => void;
   getPost: (postId: number) => Post;
-  removePost: (postId: number) => void;
+  deletePost: (postId: number) => void;
+  likePost: (accountId: number, postId: number) => void;
+  unlikePost: (accountId: number, postId: number) => void;
   savePost: (accountId: number, postId: number) => void;
   unsavePost: (accountId: number, postId: number) => void;
+  targetWidth: number;
 };
 
 export const SampleContext = createContext<SampleContextType>(
@@ -46,6 +50,8 @@ type Props = {
   initialAccountId?: number;
   initialPosts?: Record<number, Post>;
   initialPostId?: number;
+  initialUserAccountId?: number;
+  targetWidth: number;
 };
 
 const PostsProvider: FC<Props> = ({
@@ -54,6 +60,8 @@ const PostsProvider: FC<Props> = ({
   initialAccountId = 0,
   initialPosts = {},
   initialPostId = 0,
+  initialUserAccountId = 0,
+  targetWidth,
 }) => {
   const [accounts, setAccounts] =
     useState<Record<number, Account>>(initialAccounts);
@@ -61,6 +69,9 @@ const PostsProvider: FC<Props> = ({
 
   const [posts, setPosts] = useState<Record<number, Post>>(initialPosts);
   const [currPostId, setCurrPostId] = useState(initialPostId);
+
+  const [userAccountId, setUserAccountId] =
+    useState<number>(initialUserAccountId);
 
   const getAccount = (accountId: number) => accounts[accountId];
 
@@ -79,7 +90,7 @@ const PostsProvider: FC<Props> = ({
 
   const getPost = (postId: number) => posts[postId];
 
-  const removePost = (postId: number) => {
+  const deletePost = (postId: number) => {
     setPosts(
       produce((draft) => {
         delete draft[postId];
@@ -90,6 +101,24 @@ const PostsProvider: FC<Props> = ({
         Object.keys(draft).forEach((accountId, index) => {
           draft[accountId as unknown as number].saved.delete(postId);
         });
+      })
+    );
+  };
+
+  const likePost = (accountId: number, postId: number) => {
+    if (!Object.keys(posts).includes(postId.toString())) return;
+    setAccounts(
+      produce((draft) => {
+        draft[accountId].liked.add(postId);
+      })
+    );
+  };
+
+  const unlikePost = (accountId: number, postId: number) => {
+    if (!Object.keys(posts).includes(postId.toString())) return;
+    setAccounts(
+      produce((draft) => {
+        draft[accountId].liked.delete(postId);
       })
     );
   };
@@ -117,12 +146,16 @@ const PostsProvider: FC<Props> = ({
       value={{
         accounts,
         posts,
+        userAccountId,
         getAccount,
         addPost,
         getPost,
-        removePost,
+        deletePost,
+        likePost,
+        unlikePost,
         savePost,
         unsavePost,
+        targetWidth,
       }}
     >
       {children}

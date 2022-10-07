@@ -6,19 +6,19 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import { SampleContextType } from "./context/SampleProvider";
+import { SampleContextType } from "../context/SampleProvider";
 
-export const initialAccounts: SampleContextType["accounts"] = {
+export const INITIAL_ACCOUNTS: SampleContextType["accounts"] = {
   0: {
     accountId: 0,
     name: "Duy Pham",
     username: "dreamer_one",
-    traits: ["quick-learner", "dedicated", "persistent"],
+    traits: ["quick-learner", "dedicated", "casual"],
     banner: "https://picsum.photos/200/200",
     avatar: "https://picsum.photos/200/200",
     posts: new Set([0, 1]),
     liked: new Set([]),
-    saved: new Set([]),
+    saved: new Set([2]),
     body: (
       <>
         <Typography>
@@ -68,8 +68,24 @@ export const initialAccounts: SampleContextType["accounts"] = {
       </>
     ),
   },
+  1: {
+    accountId: 1,
+    name: "John Smith",
+    username: "dreamer_two",
+    traits: ["fun"],
+    banner: "https://picsum.photos/200/200",
+    avatar: "https://picsum.photos/200/200",
+    posts: new Set([2]),
+    liked: new Set([]),
+    saved: new Set([]),
+    body: (
+      <>
+        <Typography>Just some dude.</Typography>
+      </>
+    ),
+  },
 };
-export const initialPosts: SampleContextType["posts"] = {
+export const INITIAL_POSTS: SampleContextType["posts"] = {
   0: {
     postId: 0,
     author: 0,
@@ -86,7 +102,17 @@ export const initialPosts: SampleContextType["posts"] = {
     image: "https://picsum.photos/200/200",
     replies: new Set([]),
   },
+  2: {
+    postId: 2,
+    author: 1,
+    createdAt: Date.now(),
+    text: "Test post 3.",
+    image: "https://picsum.photos/200/200",
+    replies: new Set([]),
+  },
 };
 
-export const initialAccountId = Object.keys(initialAccounts).length;
-export const initialPostId = Object.keys(initialPosts).length;
+export const INITIAL_ACCOUNT_ID = Object.keys(INITIAL_ACCOUNTS).length;
+export const INITIAL_POST_ID = Object.keys(INITIAL_POSTS).length;
+
+export const INITIAL_USER_ACCOUNT_ID = 0;

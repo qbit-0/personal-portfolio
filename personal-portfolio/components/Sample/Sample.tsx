@@ -1,12 +1,12 @@
-import { Paper, Stack } from "@mui/material";
+import { Box, Modal, Paper, Portal, Stack } from "@mui/material";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import PostsProvider from "../../utility/context/SampleProvider";
 import {
-  initialAccounts,
-  initialAccountId,
-  initialPosts,
-  initialPostId,
+  INITIAL_ACCOUNTS,
+  INITIAL_ACCOUNT_ID,
+  INITIAL_POSTS,
+  INITIAL_POST_ID,
 } from "../../utility/other/sampleInitialValues";
 
 import ScalingContainer from "../ScalingContainer";
@@ -24,36 +24,42 @@ const Sample = (props: Props) => {
   );
 
   return (
-    <Stack maxWidth="100%" spacing={2} alignItems="center">
-      <Paper
-        component={motion.div}
-        elevation={6}
-        sx={{
-          maxWidth: "70vw",
-          width: targetWidth,
-          height: "80vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          overflow: "clip",
-        }}
+    <PostsProvider
+      initialAccounts={INITIAL_ACCOUNTS}
+      initialAccountId={INITIAL_ACCOUNT_ID}
+      initialPosts={INITIAL_POSTS}
+      initialPostId={INITIAL_POST_ID}
+      targetWidth={targetWidth}
+    >
+      <Stack
+        maxWidth="100%"
+        spacing={2}
+        alignItems="center"
+        position="relative"
       >
-        <ScalingContainer targetWidth={targetWidth}>
-          <PostsProvider
-            initialAccounts={initialAccounts}
-            initialAccountId={initialAccountId}
-            initialPosts={initialPosts}
-            initialPostId={initialPostId}
-          >
+        <Paper
+          component="div"
+          elevation={6}
+          sx={{
+            maxWidth: "70vw",
+            width: targetWidth,
+            height: "80vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            overflow: "clip",
+          }}
+        >
+          <ScalingContainer targetWidth={targetWidth}>
             <SampleContent />
-          </PostsProvider>
-        </ScalingContainer>
-      </Paper>
-      <SampleControls
-        targetWidth={targetWidth}
-        setTargetWidth={setTargetWidth}
-      />
-    </Stack>
+          </ScalingContainer>
+        </Paper>
+        <SampleControls
+          targetWidth={targetWidth}
+          setTargetWidth={setTargetWidth}
+        />
+      </Stack>
+    </PostsProvider>
   );
 };
 

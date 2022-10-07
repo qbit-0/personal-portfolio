@@ -55,7 +55,6 @@ const Home: FC<Props> = (props) => {
         <Container
           sx={{
             position: "relative",
-            zIndex: 2000,
             height: "100%",
             py: 8,
             display: "flex",

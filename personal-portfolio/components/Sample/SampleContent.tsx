@@ -4,103 +4,215 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Box,
+  Button,
+  Chip,
+  Divider,
   IconButton,
   Paper,
+  Stack,
   Toolbar,
   Typography,
 } from "@mui/material";
-import { FC, useContext, useMemo, useState } from "react";
+import React, { FC, useContext, useMemo, useState } from "react";
 import { SampleContext } from "../../utility/context/SampleProvider";
 import SampleHome from "./SampleHome";
 import SamplePosts from "./SamplePosts";
 import SampleProfile from "./SampleProfile";
 import SampleSaved from "./SampleSaved";
 
-const ACCOUNT_ID = 0;
+const TabValues = ["home", "profile", "posts", "saved"] as const;
+type TabType = typeof TabValues[number];
 
 type Props = {};
 
 const SampleContent: FC<Props> = ({}) => {
-  const { getAccount } = useContext(SampleContext);
-  const [tab, setTab] = useState("profile");
+  const { userAccountId, getAccount, targetWidth } = useContext(SampleContext);
+  const [tab, setTab] = useState<TabType>("profile");
 
-  const account = useMemo(() => getAccount(ACCOUNT_ID), [ACCOUNT_ID]);
+  const account = useMemo(() => getAccount(userAccountId), [userAccountId]);
 
-  let appBarMsg = "";
-  let content: JSX.Element | null = null;
-  switch (tab) {
-    case "home":
-      appBarMsg = `${account.name}'s Home`;
-      content = <SampleHome />;
-      break;
-    case "profile":
-      appBarMsg = `${account.name}'s Profile`;
-      content = <SampleProfile accountId={ACCOUNT_ID} />;
-      break;
-    case "posts":
-      appBarMsg = `${account.name}'s Posts`;
-      content = <SamplePosts accountId={ACCOUNT_ID} />;
-      break;
-    case "saved":
-      appBarMsg = `${account.name}'s Saved Posts`;
-      content = <SampleSaved accountId={ACCOUNT_ID} />;
-      break;
+  let content: React.ReactNode = null;
+  if (targetWidth >= 1440) {
+    switch (tab) {
+      case "home":
+        content = <SampleHome />;
+        break;
+      case "profile":
+      case "posts":
+      case "saved":
+        content = (
+          <Stack direction="row">
+            <SampleProfile />
+            <Divider orientation="vertical">
+              <Stack spacing={4}>
+                <Chip
+                  label="Posts"
+                  icon={<Forum />}
+                  size="small"
+                  onClick={() => setTab("posts")}
+                />
+              </Stack>
+            </Divider>
+            <SamplePosts />
+            <Divider orientation="vertical">
+              <Stack spacing={4}>
+                <Chip
+                  label="Saved"
+                  icon={<Bookmark />}
+                  size="small"
+                  onClick={() => setTab("saved")}
+                />
+              </Stack>
+            </Divider>
+            <SampleSaved />
+          </Stack>
+        );
+        break;
+    }
+  } else if (targetWidth >= 1024) {
+    switch (tab) {
+      case "home":
+        content = <SampleHome />;
+        break;
+      case "profile":
+      case "posts":
+      case "saved":
+        content = content = (
+          <Stack direction="row">
+            <SampleProfile />
+            <Divider orientation="vertical">
+              <Stack spacing={4}>
+                <Chip
+                  label="Posts"
+                  icon={<Forum />}
+                  color={
+                    tab === "profile" || tab === "posts" ? "primary" : "default"
+                  }
+                  onClick={() => setTab("posts")}
+                />
+                <Chip
+                  label="Saved"
+                  icon={<Bookmark />}
+                  color={tab === "saved" ? "primary" : "default"}
+                  onClick={() => setTab("saved")}
+                />
+              </Stack>
+            </Divider>
+            {tab === "profile" || tab === "posts" ? (
+              <SamplePosts />
+            ) : (
+              <SampleSaved />
+            )}
+          </Stack>
+        );
+        break;
+    }
+  } else {
+    switch (tab) {
+      case "home":
+        content = <SampleHome />;
+        break;
+      case "profile":
+        content = <SampleProfile />;
+        break;
+      case "posts":
+        content = <SamplePosts />;
+        break;
+      case "saved":
+        content = <SampleSaved />;
+        break;
+    }
   }
 
   return (
     <>
-      <AppBar position="absolute">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <Menu />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            {appBarMsg}
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Box component="div" width="100%" height="100%" py={8} overflow="auto">
+      {targetWidth < 1024 && (
+        <AppBar position="absolute">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 2 }}
+            >
+              <Menu />
+            </IconButton>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            >
+              {
+                {
+                  home: `${account.name}'s Home`,
+                  profile: `${account.name}'s Profile`,
+                  posts: `${account.name}'s Posts`,
+                  saved: `${account.name}'s Saved Posts`,
+                }[tab]
+              }
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      )}
+      <Stack direction="row" spacing={1} width="100%" height="100%">
+        {targetWidth >= 1024 && (
+          <Stack pl={1} py={1} spacing={1} flex={0}>
+            <Chip
+              label="Home"
+              icon={<Home />}
+              color={tab === "home" ? "primary" : "default"}
+              onClick={() => {
+                setTab("home");
+              }}
+            />
+            <Chip
+              label="Profile"
+              icon={<Person />}
+              color={
+                ["profile", "posts", "saved"].includes(tab)
+                  ? "primary"
+                  : "default"
+              }
+              onClick={() => {
+                setTab("profile");
+              }}
+            />
+          </Stack>
+        )}
         {content}
-      </Box>
-      <Paper
-        elevation={6}
-        sx={{ position: "absolute", bottom: 0, left: 0, right: 0 }}
-      >
-        <BottomNavigation
-          value={tab}
-          onChange={(event, value) => {
-            setTab(value);
-          }}
+      </Stack>
+      {targetWidth < 1024 && (
+        <Paper
+          elevation={6}
+          sx={{ position: "absolute", bottom: 0, left: 0, right: 0 }}
         >
-          <BottomNavigationAction label="Home" value="home" icon={<Home />} />
-          <BottomNavigationAction
-            label="Profile"
-            value="profile"
-            icon={<Person />}
-          />
-          <BottomNavigationAction
-            label="Posts"
-            value="posts"
-            icon={<Forum />}
-          />
-          <BottomNavigationAction
-            label="Saved"
-            value="saved"
-            icon={<Bookmark />}
-          />
-        </BottomNavigation>
-      </Paper>
+          <BottomNavigation
+            value={tab}
+            onChange={(event, value) => {
+              setTab(value);
+            }}
+          >
+            <BottomNavigationAction label="Home" value="home" icon={<Home />} />
+            <BottomNavigationAction
+              label="Profile"
+              value="profile"
+              icon={<Person />}
+            />
+            <BottomNavigationAction
+              label="Posts"
+              value="posts"
+              icon={<Forum />}
+            />
+            <BottomNavigationAction
+              label="Saved"
+              value="saved"
+              icon={<Bookmark />}
+            />
+          </BottomNavigation>
+        </Paper>
+      )}
     </>
   );
 };

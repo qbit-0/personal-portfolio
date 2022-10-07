@@ -1,4 +1,10 @@
-import { Button, Paper, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  ClickAwayListener,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { motion } from "framer-motion";
 import { FC, useState } from "react";
 import SplitablePaper from "./SplitablePaper";
@@ -41,11 +47,19 @@ const ProjectCard: FC<Props> = ({ name, url, flipped = false }) => {
       onHoverStart={() => {
         setIsSplit(true);
       }}
-      onHoverEnd={() => {
-        setIsSplit(false);
-      }}
     >
-      <iframe src={url} width="100%" height="100%" style={{ border: "none" }} />
+      <ClickAwayListener
+        onClickAway={() => {
+          setIsSplit(false);
+        }}
+      >
+        <iframe
+          src={url}
+          width="100%"
+          height="100%"
+          style={{ border: "none" }}
+        />
+      </ClickAwayListener>
     </Paper>
   );
 
