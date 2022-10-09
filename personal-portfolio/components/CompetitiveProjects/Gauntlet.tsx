@@ -1,49 +1,63 @@
 import {
   Accordion,
-  AccordionSummary,
-  Stack,
-  Typography,
+  Box,
+  Button,
+  Chip,
   Divider,
   ImageList,
-  Chip,
-  Box,
+  Link,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import React from "react";
+import { fadeInProps } from "../../utility/other/fadeInProps";
 import CustomImageListItem from "../CustomImageListItem";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CompetitiveProjectSummary from "./CompetitiveProjectSummary";
 
 type Props = {};
 
 const Gauntlet = (props: Props) => {
+  const theme = useTheme();
+  const largeLayout = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
-    <Accordion elevation={6}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Stack direction="row" spacing={2}>
-          <Box component="div" width={700}>
-            <Typography>MESA Virtual Computer Science Competition</Typography>
-            <Typography>Gauntlet</Typography>
-          </Box>
-          <Box component="div">
-            <Typography>High School</Typography>
-          </Box>
-        </Stack>
-      </AccordionSummary>
+    <Accordion elevation={1} {...fadeInProps}>
+      <CompetitiveProjectSummary
+        competition={"MESA Virtual Computer Science Competition"}
+        submission={"Gauntlet"}
+        type={"High School"}
+      />
+      <Divider />
       <Stack
-        direction="row"
+        direction={largeLayout ? "row" : "column"}
         spacing={2}
-        divider={<Divider orientation="vertical" />}
+        divider={
+          <Divider orientation={largeLayout ? "vertical" : "horizontal"} />
+        }
         p={2}
       >
-        <Box component="div" flex={1}>
-          <ImageList>
+        <Box component="div" flex={2}>
+          <ImageList cols={1}>
             <CustomImageListItem
-              src="/videos/competitions/Gauntlet/Gauntlet Trailer.mp4"
+              src="/videos/competitions/Gauntlet/Gauntlet Boss.mkv"
               title="Gauntlet Gameplay"
               isVideo
             />
           </ImageList>
         </Box>
         <Stack flex={1} spacing={2}>
+          <Box component="div" display="flex" justifyContent="center">
+            <Link
+              width="100%"
+              href="https://drive.google.com/file/d/0B6DTdB1TtAv-WDRkYkdLel9uNnc/view?usp=sharing&resourcekey=0-JNHLjAnEu1VLtDXwJAAKbg"
+              target="_blank"
+            >
+              <Button variant="contained" fullWidth>
+                Download Gauntlet
+              </Button>
+            </Link>
+          </Box>
           <Box component="div">
             <Divider>
               <Chip label="Prompt" />

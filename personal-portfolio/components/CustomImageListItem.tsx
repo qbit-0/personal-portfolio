@@ -9,6 +9,7 @@ import {
 import { FC, useState } from "react";
 
 import InfoIcon from "@mui/icons-material/Info";
+import { fadeInProps } from "../utility/other/fadeInProps";
 
 type Props = {
   src: string;
@@ -30,7 +31,7 @@ const CompetitionImage: FC<Props> = ({
   };
 
   const media = isVideo ? (
-    <video src={src} controls />
+    <video src={src} controls width="100%" height="100%" />
   ) : (
     <img
       src={src}
@@ -67,17 +68,17 @@ const CompetitionImage: FC<Props> = ({
           position="absolute"
           width="full"
           height="full"
-          top="50%"
           left="50%"
+          top="50%"
           bgcolor="white"
           sx={{ transform: "translate(-50%, -50%)" }}
         >
-          <ImageListItem>
+          <Box component="div" maxWidth="90vw" maxHeight="90vh">
             {media}
             {description && (
               <ImageListItemBar position="top" title={description} />
             )}
-          </ImageListItem>
+          </Box>
         </Box>
       </Modal>
     </>

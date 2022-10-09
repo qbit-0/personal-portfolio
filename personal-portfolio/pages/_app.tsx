@@ -1,15 +1,14 @@
 import { CacheProvider, EmotionCache } from "@emotion/react";
-import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { AppProps } from "next/app";
 import "../styles/globals.css";
-import lightThemeOptions from "../styles/theme/lightThemeOptions";
+import lightTheme from "../styles/theme/lightTheme";
 import createEmotionCache from "../utility/material/createEmotionCache";
 
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import darkThemeOptions from "../styles/theme/darkThemeOptions";
 import { enableMapSet } from "immer";
 import { useEffect } from "react";
 
@@ -18,9 +17,6 @@ type MyAppProps = AppProps & {
 };
 
 const clientSideEmotionCache = createEmotionCache();
-const lightTheme = createTheme(lightThemeOptions);
-const darkTheme = createTheme(darkThemeOptions);
-
 const MyApp: React.FC<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   useEffect(() => {

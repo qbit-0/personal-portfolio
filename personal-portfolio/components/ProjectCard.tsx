@@ -1,13 +1,7 @@
-import {
-  Button,
-  ClickAwayListener,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import { FC, useState } from "react";
-import SplitablePaper from "./SplitablePaper";
+import { FC } from "react";
+import { fadeInProps } from "../utility/other/fadeInProps";
 
 type Props = {
   name: string;
@@ -16,65 +10,44 @@ type Props = {
 };
 
 const ProjectCard: FC<Props> = ({ name, url, flipped = false }) => {
-  const [isSplit, setIsSplit] = useState(false);
-
-  const info = (
-    <Paper key={0} sx={{ flex: 1 }}>
-      <Stack height="100%" justifyContent="center" alignItems="center">
-        <Typography variant="h4" display="block">
-          {name}
-        </Typography>
-        <Button
-          variant="contained"
-          onClick={() => {
-            window.open(url, "_blank");
+  return (
+    <Paper sx={{ width: "100%", overflow: "clip" }} {...fadeInProps}>
+      <Stack width="100%" height="600px">
+        <Box
+          component="div"
+          sx={{
+            flex: 2,
           }}
         >
-          View Project
-        </Button>
+          <iframe
+            src={url}
+            width="100%"
+            height="100%"
+            style={{ border: "none" }}
+          />
+        </Box>
+        <Stack
+          flex={1}
+          height="100%"
+          justifyContent="center"
+          alignItems="center"
+          spacing={2}
+          {...fadeInProps}
+        >
+          <Typography variant="h3" fontWeight="bold">
+            {name}
+          </Typography>
+          <Button
+            variant="contained"
+            onClick={() => {
+              window.open(url, "_blank");
+            }}
+          >
+            View Project
+          </Button>
+        </Stack>
       </Stack>
     </Paper>
-  );
-
-  const preview = (
-    <Paper
-      key={1}
-      component={motion.div}
-      sx={{
-        flex: 2,
-        overflow: "clip",
-      }}
-      onHoverStart={() => {
-        setIsSplit(true);
-      }}
-    >
-      <ClickAwayListener
-        onClickAway={() => {
-          setIsSplit(false);
-        }}
-      >
-        <iframe
-          src={url}
-          width="100%"
-          height="100%"
-          style={{ border: "none" }}
-        />
-      </ClickAwayListener>
-    </Paper>
-  );
-
-  return (
-    <SplitablePaper
-      width="1000px"
-      height="600px"
-      elevation={6}
-      splitDirection="vertical"
-      animate={isSplit ? "split" : "joined"}
-      whileInView={{ scale: 1.025 }}
-      viewport={{ amount: "all" }}
-    >
-      {flipped ? [preview, info] : [info, preview]}
-    </SplitablePaper>
   );
 };
 

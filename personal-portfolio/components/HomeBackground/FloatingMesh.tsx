@@ -1,16 +1,10 @@
+import { useTheme } from "@mui/material";
 import { useSphere } from "@react-three/cannon";
-import {
-  MeshDistortMaterial,
-  MeshWobbleMaterial,
-  Trail,
-} from "@react-three/drei";
+import { MeshDistortMaterial } from "@react-three/drei";
 import { ThreeElements, useFrame } from "@react-three/fiber";
 import { FC, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { getRandomRange } from "../../utility/other/numberUtils";
-
-const wireframeColors = ["red", "white", "gray", "black"];
-const shellColors = ["red", "white", "gray", "black"];
 
 export type FloatingMeshProps = ThreeElements["group"] & {
   meshId: number;
@@ -124,48 +118,63 @@ const FloatingMesh: FC<FloatingMeshProps> = ({
     return geometries[Math.floor(Math.random() * geometries.length)]();
   }, []);
 
-  const naturalWireframeColor = useMemo(
+  const theme = useTheme();
+
+  const wireframeColors = useMemo(
+    () => [theme.palette.primary.main, "white", "gray", "black"],
+    [theme]
+  );
+  const shellColors = useMemo(
+    () => [theme.palette.primary.main, "white", "gray", "black"],
+    [theme]
+  );
+
+  const defaultWireframeColor = useMemo(
     () => wireframeColors[Math.floor(Math.random() * wireframeColors.length)],
     []
   );
-  const naturalShellColor = useMemo(
+  const defaultShellColor = useMemo(
     () => shellColors[Math.floor(Math.random() * shellColors.length)],
     []
   );
 
   const [wireframeMaterial, shellMaterial, innerShellMaterial] = useMemo(() => {
-    const wireframeColor = isHovered ? "cyan" : naturalWireframeColor;
-    const shellColor = isHovered ? "blue" : naturalShellColor;
+    const wireframeColor = isHovered
+      ? theme.palette.secondary.main
+      : defaultWireframeColor;
+    const shellColor = isHovered
+      ? theme.palette.secondary.main
+      : defaultShellColor;
 
     const wireframeMaterial = (
       <meshStandardMaterial
         color={wireframeColor}
         wireframe
-        roughness={0.5}
+        roughness={0}
         metalness={1}
       />
     );
     const shellMaterial = (
       <MeshDistortMaterial
-        distort={isHovered ? 0.75 : 0.5}
+        distort={isHovered ? 0.75 : 0.2}
         speed={isHovered ? 10 : 5}
         color={shellColor}
-        roughness={0.5}
-        metalness={1}
+        roughness={1}
+        metalness={0}
       />
     );
     const innerShellMaterial = (
       <MeshDistortMaterial
-        distort={isHovered ? 0.75 : 0.5}
+        distort={isHovered ? 0.75 : 0.2}
         speed={isHovered ? 10 : 5}
         color={shellColor}
-        roughness={0.5}
-        metalness={1}
+        roughness={1}
+        metalness={0}
         side={THREE.BackSide}
       />
     );
     return [wireframeMaterial, shellMaterial, innerShellMaterial];
-  }, [naturalWireframeColor, naturalShellColor, isHovered]);
+  }, [defaultWireframeColor, defaultShellColor, isHovered]);
 
   const handlePointerOver = () => {
     setIsHovered(true);
@@ -236,9 +245,9 @@ const FloatingMesh: FC<FloatingMeshProps> = ({
         worldPosition.y < 4 &&
         wireframeDrawRangeCount < wireframeMaxDrawCount
       ) {
-        wireframeDrawRangeCount += wireframeMaxDrawCount * 0.002;
+        wireframeDrawRangeCount += wireframeMaxDrawCount * 0.004;
       } else if (worldPosition.y > 5 && wireframeDrawRangeCount > 0) {
-        wireframeDrawRangeCount -= wireframeMaxDrawCount * 0.003;
+        wireframeDrawRangeCount -= wireframeMaxDrawCount * 0.006;
       }
 
       wireframeGeometryRef.current.setDrawRange(0, wireframeDrawRangeCount);
@@ -252,9 +261,9 @@ const FloatingMesh: FC<FloatingMeshProps> = ({
         worldPosition.y < 4 &&
         shellDrawRangeCount < shellMaxDrawCount
       ) {
-        shellDrawRangeCount += shellMaxDrawCount * 0.001;
+        shellDrawRangeCount += shellMaxDrawCount * 0.002;
       } else if (worldPosition.y > 4 && shellDrawRangeCount > 0) {
-        shellDrawRangeCount -= shellMaxDrawCount * 0.004;
+        shellDrawRangeCount -= shellMaxDrawCount * 0.008;
       }
 
       shellGeometryRef.current.setDrawRange(0, shellDrawRangeCount);

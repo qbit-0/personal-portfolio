@@ -20,6 +20,7 @@ const SampleSaved: FC<Props> = ({}) => {
     <Box
       component="div"
       width="100%"
+      maxWidth={500}
       height="100%"
       pt={targetWidth >= 1024 ? 0 : 8}
       pb={targetWidth >= 1024 ? 4 : 8}

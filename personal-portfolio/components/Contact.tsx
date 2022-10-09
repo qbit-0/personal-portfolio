@@ -1,13 +1,27 @@
 import { Email, GitHub } from "@mui/icons-material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { Box, Container, Link, Paper, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Link,
+  Paper,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { motion } from "framer-motion";
 import { FC, useContext, useEffect, useRef } from "react";
 import { NavContext } from "../utility/context/NavProvider";
+import FadeInWrapper, { fadeInProps } from "../utility/other/fadeInProps";
 
 type Props = {};
 
 const Contact: FC<Props> = (props) => {
+  const theme = useTheme();
+  const showPhoto = useMediaQuery(theme.breakpoints.up("md"));
   const { setNavValue, navCallbacks } = useContext(NavContext);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -24,73 +38,96 @@ const Contact: FC<Props> = (props) => {
       sx={{
         position: "relative",
         minHeight: "100vh",
-        mt: 16,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        py: 16,
       }}
+      maxWidth="md"
       onViewportEnter={() => {
         setNavValue("contact");
       }}
+      viewport={{ amount: 0.5 }}
     >
-      <Box component="div">
-        <Typography variant="h2" fontSize={96} fontWeight="bold">
-          CONTACT
-        </Typography>
-        <Paper elevation={6} sx={{ p: 4 }}>
-          <Stack spacing={2}>
-            <Stack direction="row" spacing={2}>
-              <Email />
-              <Link>
-                <Typography>duypham12241999@gmail.com</Typography>
-              </Link>
-            </Stack>
-
-            <Stack direction="row" spacing={2}>
-              <LinkedInIcon />
-              <Link>
-                <Typography>
-                  https://www.linkedin.com/in/duy-pham-a15160140
-                </Typography>
-              </Link>
-            </Stack>
-
-            <Stack direction="row" spacing={2}>
-              <GitHub />
-              <Link>
-                <Typography>https://github.com/qbit-0/</Typography>
-              </Link>
-            </Stack>
-          </Stack>
-        </Paper>
-      </Box>
-      <Box component="div" position="absolute" left={0} bottom={0}>
-        <Box component="div" p={2}>
-          <Typography>
-            Designed and built by{" "}
-            <Link
-              onClick={() => {
-                if (navCallbacks.home.navCallback)
-                  navCallbacks.home.navCallback();
+      <Paper elevation={1} sx={{ p: 4 }} {...fadeInProps}>
+        <Stack direction="row" spacing={2}>
+          {showPhoto && (
+            <Paper
+              elevation={1}
+              sx={{
+                position: "relative",
+                overflow: "clip",
+                flex: 1,
               }}
+              {...fadeInProps}
             >
-              me
-            </Link>
-            .{" "}
-            <Link
+              <img
+                src="/images/me/stand.jpg"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </Paper>
+          )}
+          <Stack position="relative" component="div" flex={2}>
+            <Typography variant="h2" {...fadeInProps}>
+              CONTACT
+            </Typography>
+            <Box component="div">
+              <Typography variant="h3" {...fadeInProps}>
+                I'm looking for work. Let's get in touch.
+              </Typography>
+              <Box
+                width="100%"
+                display="flex"
+                justifyContent="center"
+                mt={4}
+                {...fadeInProps}
+              >
+                <Link underline="none" href="" download>
+                  <Button variant="contained">Check Out My Resume</Button>
+                </Link>
+              </Box>
+            </Box>
+          </Stack>
+          <Stack
+            spacing={2}
+            direction="column"
+            justifyContent="center"
+            alignItems="end"
+          >
+            <IconButton
+              color="primary"
+              onClick={() => {
+                window.open("", "_blank");
+              }}
+              {...fadeInProps}
+            >
+              <Email />
+            </IconButton>
+            <IconButton
+              color="primary"
               onClick={() => {
                 window.open(
-                  "https://github.com/qbit-0/personal-portfolio",
+                  "https://www.linkedin.com/in/duy-pham-a15160140",
                   "_blank"
                 );
               }}
+              {...fadeInProps}
             >
-              Source code
-            </Link>{" "}
-            for the curious.
-          </Typography>
-        </Box>
-      </Box>
+              <LinkedInIcon />
+            </IconButton>
+            <IconButton
+              color="primary"
+              onClick={() => {
+                window.open("https://github.com/qbit-0/", "_blank");
+              }}
+              {...fadeInProps}
+            >
+              <GitHub />
+            </IconButton>
+          </Stack>
+        </Stack>
+      </Paper>
     </Container>
   );
 };

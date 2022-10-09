@@ -1,6 +1,15 @@
-import { Box, Modal, Paper, Portal, Stack } from "@mui/material";
+import {
+  Box,
+  createTheme,
+  Modal,
+  Paper,
+  Portal,
+  Stack,
+  ThemeProvider,
+} from "@mui/material";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import darkThemeOptions from "../../styles/theme/darkThemeOptions";
 import PostsProvider from "../../utility/context/SampleProvider";
 import {
   INITIAL_ACCOUNTS,
@@ -8,6 +17,7 @@ import {
   INITIAL_POSTS,
   INITIAL_POST_ID,
 } from "../../utility/other/sampleInitialValues";
+import FadeInWrapper, { fadeInProps } from "../../utility/other/fadeInProps";
 
 import ScalingContainer from "../ScalingContainer";
 import SampleContent from "./SampleContent";
@@ -38,26 +48,28 @@ const Sample = (props: Props) => {
         position="relative"
       >
         <Paper
-          component="div"
-          elevation={6}
+          elevation={1}
           sx={{
             maxWidth: "70vw",
             width: targetWidth,
-            height: "80vh",
+            height: "70vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             overflow: "clip",
           }}
+          {...fadeInProps}
         >
           <ScalingContainer targetWidth={targetWidth}>
             <SampleContent />
           </ScalingContainer>
         </Paper>
-        <SampleControls
-          targetWidth={targetWidth}
-          setTargetWidth={setTargetWidth}
-        />
+        <Box {...fadeInProps}>
+          <SampleControls
+            targetWidth={targetWidth}
+            setTargetWidth={setTargetWidth}
+          />
+        </Box>
       </Stack>
     </PostsProvider>
   );

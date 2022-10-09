@@ -16,7 +16,7 @@ type Props = {};
 
 const Soccerbot = (props: Props) => {
   return (
-    <Accordion elevation={6}>
+    <Accordion elevation={1}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Stack direction="row" spacing={2}>
           <Box component="div" width={700}>
@@ -35,7 +35,7 @@ const Soccerbot = (props: Props) => {
         p={2}
       >
         <Box component="div" flex={1}>
-          <ImageList>
+          <ImageList cols={1}>
             <CustomImageListItem
               src="/videos/competitions/Soccerbot/Soccerbot.mp4"
               title="Scoring a Goal"
@@ -43,7 +43,7 @@ const Soccerbot = (props: Props) => {
             />
           </ImageList>
         </Box>
-        <Stack flex={1} spacing={2}>
+        <Stack flex={2} spacing={2}>
           <Box component="div">
             <Divider>
               <Chip label="Prompt" />

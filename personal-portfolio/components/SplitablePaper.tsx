@@ -21,7 +21,7 @@ const SplitablePaper: FC<Props> = (props) => {
     children,
     fullPaperOverlay = null,
     elevation = 1,
-    borderRadius = 2,
+    borderRadius = 4,
     paperCorners,
     splitDirection = "vertical",
     spacing = 2,
@@ -143,11 +143,11 @@ const SplitablePaper: FC<Props> = (props) => {
                   }
                   {...otherChildProps}
                   sx={{
-                    ...otherChildProps.sx,
                     position: "absolute",
                     width: "100%",
                     height: "100%",
                     zIndex: -1,
+                    ...otherChildProps.sx,
                   }}
                   variants={paperVariants}
                   initial={initial}
@@ -158,10 +158,10 @@ const SplitablePaper: FC<Props> = (props) => {
                   elevation={0}
                   {...otherChildProps}
                   sx={{
-                    ...otherChildProps.sx,
                     position: "absolute",
                     width: "100%",
                     height: "100%",
+                    ...otherChildProps.sx,
                   }}
                   variants={paperVariants}
                   initial={initial}

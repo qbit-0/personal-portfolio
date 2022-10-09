@@ -9,6 +9,7 @@ import {
   RadioGroup,
   Slider,
   Stack,
+  useTheme,
 } from "@mui/material";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
@@ -84,7 +85,7 @@ const SampleControls: React.FC<Props> = ({ targetWidth, setTargetWidth }) => {
   };
 
   return (
-    <Paper elevation={6} sx={{ p: 4, pt: 6 }}>
+    <Paper elevation={1} sx={{ p: 4, pt: 6 }}>
       <Slider
         value={targetWidth}
         min={MIN_DIM}

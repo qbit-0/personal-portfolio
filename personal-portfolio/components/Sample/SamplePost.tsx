@@ -76,28 +76,35 @@ const SamplePost: FC<Props> = ({ account, post }) => {
       </Paper>
       <Stack width="100%">
         <Stack direction="row" spacing={1}>
-          <Typography>{account.name}</Typography>
-          <Typography>@{account.username}</Typography>
+          <Typography fontWeight="bold">{account.name}</Typography>
+          <Typography color="red">@{account.username}</Typography>
           <Typography color="gray">
             {getElapsedString(post.createdAt)}
           </Typography>
         </Stack>
         <Typography>{post.text}</Typography>
-        {post.image && (
-          <Box component="div" width="100%" overflow="clip" borderRadius={2}>
-            <img src={post.image} width="100%" height="100%" />
+        {post.media && (
+          <Box component="div" width="100%" overflow="clip" borderRadius={0.5}>
+            {post.isVideo ? (
+              <video src={post.media} controls width="100%" height="100%" />
+            ) : (
+              <img src={post.media} width="100%" height="100%" />
+            )}
           </Box>
         )}
         <Stack direction="row" spacing={2} justifyContent="space-evenly">
           <IconButton>
             <AddComment />
           </IconButton>
-          <IconButton
-            onClick={handleLike}
-            color={isLiked ? "success" : "default"}
-          >
-            <ThumbUpIcon />
-          </IconButton>
+          <Stack direction="row" alignItems="center">
+            <IconButton
+              onClick={handleLike}
+              color={isLiked ? "success" : "default"}
+            >
+              <ThumbUpIcon />
+            </IconButton>
+            <Typography>{post.likes}</Typography>
+          </Stack>
           <IconButton
             onClick={handleSave}
             color={isSaved ? "success" : "default"}

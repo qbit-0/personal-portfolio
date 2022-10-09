@@ -21,8 +21,10 @@ export type Post = {
   author: number;
   createdAt: number;
   text: string;
-  image?: string;
+  media?: string;
+  isVideo?: boolean;
   replies: Set<number>;
+  likes: number;
 };
 
 export type SampleContextType = {
@@ -107,6 +109,11 @@ const PostsProvider: FC<Props> = ({
 
   const likePost = (accountId: number, postId: number) => {
     if (!Object.keys(posts).includes(postId.toString())) return;
+    setPosts(
+      produce((draft) => {
+        draft[postId].likes++;
+      })
+    );
     setAccounts(
       produce((draft) => {
         draft[accountId].liked.add(postId);
@@ -116,6 +123,11 @@ const PostsProvider: FC<Props> = ({
 
   const unlikePost = (accountId: number, postId: number) => {
     if (!Object.keys(posts).includes(postId.toString())) return;
+    setPosts(
+      produce((draft) => {
+        draft[postId].likes--;
+      })
+    );
     setAccounts(
       produce((draft) => {
         draft[accountId].liked.delete(postId);

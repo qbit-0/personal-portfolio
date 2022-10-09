@@ -12,13 +12,14 @@ const SampleHome: FC<Props> = ({}) => {
     <Box
       component="div"
       width="100%"
+      maxWidth={500}
       height="100%"
       pt={targetWidth >= 1024 ? 0 : 8}
       pb={targetWidth >= 1024 ? 4 : 8}
       overflow="auto"
       flex={1}
     >
-      <Stack spacing={2} mx={2} py={2} divider={<Divider />}>
+      <Stack spacing={2} p={2} divider={<Divider />}>
         {Object.entries(posts)
           .reverse()
           .map(([postId, post], index) => (

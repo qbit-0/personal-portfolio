@@ -1,39 +1,38 @@
 import {
   Accordion,
-  AccordionSummary,
-  Stack,
-  Typography,
+  Box,
+  Chip,
   Divider,
   ImageList,
-  Chip,
-  Box,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import React from "react";
+import { fadeInProps } from "../../utility/other/fadeInProps";
 import CustomImageListItem from "../CustomImageListItem";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CompetitiveProjectSummary from "./CompetitiveProjectSummary";
 
 type Props = {};
 
 const NEDC = (props: Props) => {
+  const theme = useTheme();
+  const largeLayout = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
-    <Accordion elevation={6}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Stack direction="row" spacing={2}>
-          <Box component="div" width={700}>
-            <Typography>
-              MESA National Engineering and Design Competition
-            </Typography>
-            <Typography>Document Organizing System</Typography>
-          </Box>
-          <Box component="div">
-            <Typography>High School</Typography>
-          </Box>
-        </Stack>
-      </AccordionSummary>
+    <Accordion elevation={1} {...fadeInProps}>
+      <CompetitiveProjectSummary
+        competition={"MESA National Engineering and Design Competition"}
+        submission={"Document Organizing System"}
+        type={"High School"}
+      />
+      <Divider />
       <Stack
-        direction="row"
+        direction={largeLayout ? "row" : "column"}
         spacing={2}
-        divider={<Divider orientation="vertical" />}
+        divider={
+          <Divider orientation={largeLayout ? "vertical" : "horizontal"} />
+        }
         p={2}
       >
         <Box component="div" flex={2} height="100%">

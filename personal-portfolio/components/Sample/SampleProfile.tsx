@@ -59,10 +59,10 @@ const SampleProfile: FC<Props> = ({}) => {
           </Stack>
         </Box>
         <Box component="div" px={1}>
-          <Typography fontSize={40} fontWeight="bold">
+          <Typography variant="h3" fontWeight="bold">
             {userAccount.name}
           </Typography>
-          <Typography fontSize={12}>@{userAccount.username}</Typography>
+          <Typography color="red">@{userAccount.username}</Typography>
           {userAccount.body}
         </Box>
       </Box>

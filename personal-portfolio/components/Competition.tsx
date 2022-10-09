@@ -1,26 +1,14 @@
-import {
-  Accordion,
-  AccordionSummary,
-  Box,
-  Chip,
-  Container,
-  Divider,
-  ImageList,
-  ImageListItem,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { FC, useContext, useEffect, useRef } from "react";
 import { NavContext } from "../utility/context/NavProvider";
 
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import CustomImageListItem from "./CustomImageListItem";
+import Gauntlet from "./CompetitiveProjects/Gauntlet";
 import NEDC from "./CompetitiveProjects/NEDC";
 import Petri from "./CompetitiveProjects/Petri";
-import Gauntlet from "./CompetitiveProjects/Gauntlet";
-import Soccerbot from "./CompetitiveProjects/Soccerbot";
 import RoboCup from "./CompetitiveProjects/RoboCup";
+import Soccerbot from "./CompetitiveProjects/Soccerbot";
+import FadeInWrapper, { fadeInProps } from "../utility/other/fadeInProps";
 
 type Props = {};
 
@@ -37,33 +25,31 @@ const Competition: FC<Props> = (props) => {
   return (
     <Container
       ref={navRef}
+      component={motion.div}
+      maxWidth="md"
       sx={{
         minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        my: 16,
+        py: 16,
       }}
+      onViewportEnter={() => {
+        setNavValue("competition");
+      }}
+      viewport={{ amount: 0.5 }}
     >
-      <Box
-        component={motion.div}
-        onViewportEnter={() => {
-          setNavValue("competition");
-        }}
-      >
-        <Typography variant="h2" fontSize={96} fontWeight="bold">
-          COMPETITION / FUN
-        </Typography>
-        <Typography variant="h5" fontWeight="bold">
-          A longtime hobby of mine is participating in various engineering and
-          programming contests, usually with a team of my friends. Good times.
-        </Typography>
+      <Typography variant="h2" textAlign="center" {...fadeInProps}>
+        COMPETITION / FUN
+      </Typography>
+      <Typography variant="h4" mt={8} {...fadeInProps}>
+        One of my hobbies is participating in engineering and programming
+        contests, usually with a team of my friends. Good times. Here's some of
+        the ones I still have photos of.
+      </Typography>
 
+      <Box mt={8} {...fadeInProps}>
         <RoboCup />
         <NEDC />
         <Petri />
         <Gauntlet />
-        <Soccerbot />
       </Box>
     </Container>
   );

@@ -1,4 +1,4 @@
-import { Box, Container, Paper, Typography } from "@mui/material";
+import { Box, Container, Paper, Typography, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import { FC, useContext, useEffect, useRef } from "react";
 import { NavContext } from "../utility/context/NavProvider";
@@ -8,6 +8,8 @@ import NavBar from "./NavBar";
 type Props = {};
 
 const Home: FC<Props> = (props) => {
+  const theme = useTheme();
+
   const { setNavValue, navCallbacks } = useContext(NavContext);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -41,31 +43,28 @@ const Home: FC<Props> = (props) => {
         <Box component="div" position="absolute" width="100%" height="100%">
           <HomeCanvas />
         </Box>
-        <Box component="div" position="absolute" display="flex" p={4}>
-          <Paper
-            variant="outlined"
-            sx={{
-              bgcolor: "transparent",
-              backdropFilter: "blur(2px) brightness(200%)",
-            }}
-          >
-            <NavBar orientation="vertical" />
-          </Paper>
+        <Box component="div" position="absolute" width="100%">
+          <NavBar />
         </Box>
         <Container
+          maxWidth="md"
           sx={{
             position: "relative",
             height: "100%",
             py: 8,
             display: "flex",
+            justifyContent: "center",
             alignItems: "center",
             pointerEvents: "none",
           }}
         >
-          <Typography variant="h1" fontWeight="bold" fontSize={120}>
-            Hi, I'm <span style={{ color: "red" }}>Duy</span>
-            . <br /> Your Front-End Web Developer.
-          </Typography>
+          <Box component="div">
+            <Typography variant="h1">
+              Hey, I'm{" "}
+              <span style={{ color: theme.palette.primary.main }}>Duy</span>.
+            </Typography>
+            <Typography variant="h2">Your Front-End Web Developer.</Typography>
+          </Box>
         </Container>
       </Paper>
     </Box>

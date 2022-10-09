@@ -41,7 +41,7 @@ const SampleContent: FC<Props> = ({}) => {
       case "posts":
       case "saved":
         content = (
-          <Stack direction="row">
+          <Stack width="100%" direction="row">
             <SampleProfile />
             <Divider orientation="vertical">
               <Stack spacing={4}>
@@ -77,27 +77,34 @@ const SampleContent: FC<Props> = ({}) => {
       case "profile":
       case "posts":
       case "saved":
-        content = content = (
-          <Stack direction="row">
+        content = (
+          <Stack
+            width="100%"
+            direction="row"
+            divider={
+              <Divider orientation="vertical">
+                <Stack spacing={4}>
+                  <Chip
+                    label="Posts"
+                    icon={<Forum />}
+                    color={
+                      tab === "profile" || tab === "posts"
+                        ? "primary"
+                        : "default"
+                    }
+                    onClick={() => setTab("posts")}
+                  />
+                  <Chip
+                    label="Saved"
+                    icon={<Bookmark />}
+                    color={tab === "saved" ? "primary" : "default"}
+                    onClick={() => setTab("saved")}
+                  />
+                </Stack>
+              </Divider>
+            }
+          >
             <SampleProfile />
-            <Divider orientation="vertical">
-              <Stack spacing={4}>
-                <Chip
-                  label="Posts"
-                  icon={<Forum />}
-                  color={
-                    tab === "profile" || tab === "posts" ? "primary" : "default"
-                  }
-                  onClick={() => setTab("posts")}
-                />
-                <Chip
-                  label="Saved"
-                  icon={<Bookmark />}
-                  color={tab === "saved" ? "primary" : "default"}
-                  onClick={() => setTab("saved")}
-                />
-              </Stack>
-            </Divider>
             {tab === "profile" || tab === "posts" ? (
               <SamplePosts />
             ) : (
@@ -127,9 +134,9 @@ const SampleContent: FC<Props> = ({}) => {
   return (
     <>
       {targetWidth < 1024 && (
-        <AppBar position="absolute">
+        <AppBar elevation={4} position="absolute">
           <Toolbar>
-            <IconButton
+            {/* <IconButton
               size="large"
               edge="start"
               color="inherit"
@@ -137,7 +144,7 @@ const SampleContent: FC<Props> = ({}) => {
               sx={{ mr: 2 }}
             >
               <Menu />
-            </IconButton>
+            </IconButton> */}
             <Typography
               variant="h6"
               noWrap
@@ -181,11 +188,18 @@ const SampleContent: FC<Props> = ({}) => {
             />
           </Stack>
         )}
-        {content}
+        <Box
+          component="div"
+          width="100%"
+          display="flex"
+          justifyContent="center"
+        >
+          {content}
+        </Box>
       </Stack>
       {targetWidth < 1024 && (
         <Paper
-          elevation={6}
+          elevation={8}
           sx={{ position: "absolute", bottom: 0, left: 0, right: 0 }}
         >
           <BottomNavigation

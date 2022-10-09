@@ -1,37 +1,40 @@
 import {
   Accordion,
-  AccordionSummary,
-  Stack,
-  Typography,
+  Box,
+  Button,
+  Chip,
   Divider,
   ImageList,
-  Chip,
-  Box,
+  Link,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import React from "react";
+import { fadeInProps } from "../../utility/other/fadeInProps";
 import CustomImageListItem from "../CustomImageListItem";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CompetitiveProjectSummary from "./CompetitiveProjectSummary";
 
 type Props = {};
 
 const RoboCup = (props: Props) => {
+  const theme = useTheme();
+  const largeLayout = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
-    <Accordion elevation={6}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Stack direction="row" spacing={2}>
-          <Box component="div" width={700}>
-            <Typography>IEEE RoboCup</Typography>
-            <Typography>Tritons</Typography>
-          </Box>
-          <Box component="div">
-            <Typography>University</Typography>
-          </Box>
-        </Stack>
-      </AccordionSummary>
+    <Accordion elevation={1} {...fadeInProps}>
+      <CompetitiveProjectSummary
+        competition={"IEEE RoboCup"}
+        submission={"Tritons"}
+        type={"University"}
+      />
+      <Divider />
       <Stack
-        direction="row"
+        direction={largeLayout ? "row" : "column"}
         spacing={2}
-        divider={<Divider orientation="vertical" />}
+        divider={
+          <Divider orientation={largeLayout ? "vertical" : "horizontal"} />
+        }
         p={2}
       >
         <Box component="div" flex={2}>
@@ -67,6 +70,18 @@ const RoboCup = (props: Props) => {
           </ImageList>
         </Box>
         <Stack flex={1} spacing={2}>
+          <Stack spacing={2} alignItems="center">
+            <Link width="100%" href="/pdf/2021_TDP_Tritons-RCSC.pdf" download>
+              <Button variant="contained" fullWidth>
+                2021 Team Description Paper
+              </Button>
+            </Link>
+            <Link width="100%" href="/pdf/2022_TDP_Tritons-RCSC.pdf" download>
+              <Button variant="contained" fullWidth>
+                2022 Team Description Paper
+              </Button>
+            </Link>
+          </Stack>
           <Box component="div">
             <Divider>
               <Chip label="Prompt" />
@@ -80,7 +95,7 @@ const RoboCup = (props: Props) => {
           </Box>
           <Box component="div">
             <Divider>
-              <Chip label="triton-soccer-ai" />
+              <Chip label="Triton Soccer AI" />
             </Divider>
             <Typography>
               As a member of the AI side on software, I developed the

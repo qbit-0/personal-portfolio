@@ -4,17 +4,21 @@ import {
   ClickAwayListener,
   Container,
   Paper,
-  Stack,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import { FC, useContext, useEffect, useRef, useState } from "react";
 import { NavContext } from "../utility/context/NavProvider";
+import { fadeInProps } from "../utility/other/fadeInProps";
 import SplitablePaper from "./SplitablePaper";
 
 type Props = {};
 
 const Skills: FC<Props> = (props) => {
+  const theme = useTheme();
+  const bigGaps = useMediaQuery(theme.breakpoints.up("sm"));
   const { setNavValue, navCallbacks } = useContext(NavContext);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -53,149 +57,209 @@ const Skills: FC<Props> = (props) => {
     }
   }, [isSplit1]);
 
-  const [hoverItem, setHoverItem] = useState<string | null>(null);
+  const [targetItem, setTargetItem] = useState<string | null>(null);
 
-  let leftPanel: JSX.Element;
-  switch (hoverItem) {
+  let infoText: JSX.Element;
+  switch (targetItem) {
     case "react":
-      leftPanel = (
-        <Typography variant="h2" fontSize={96} fontWeight="bold">
-          React
-        </Typography>
-      );
+      infoText = <Typography variant="h2">REACT</Typography>;
       break;
     case "typescript":
-      leftPanel = (
-        <Typography variant="h2" fontSize={96} fontWeight="bold">
-          TypeScript
-        </Typography>
-      );
+      infoText = <Typography variant="h2">TYPESCRIPT</Typography>;
+      break;
+    case "java":
+      infoText = <Typography variant="h2">JAVA</Typography>;
+      break;
+    case "mui":
+      infoText = <Typography variant="h2">MATERIAL UI</Typography>;
       break;
     default:
-      leftPanel = (
-        <Box
-          component="div"
-          width="100%"
-          height="100%"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Typography variant="h2" fontSize={96} fontWeight="bold">
-            SKILLS
-          </Typography>
-        </Box>
-      );
+      infoText = <Typography variant="h2">SKILLS</Typography>;
       break;
   }
 
   return (
-    <Container
-      component={motion.div}
-      ref={navRef}
-      sx={{
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        my: 16,
-      }}
-      onViewportEnter={() => {
-        setNavValue("skills");
-      }}
-    >
-      <ClickAwayListener onClickAway={() => setHoverItem(null)}>
-        <Stack
-          direction="row"
+    <Box component="div">
+      <Container
+        component={motion.div}
+        ref={navRef}
+        maxWidth="md"
+        sx={{
+          minHeight: "100vh",
+          py: 16,
+        }}
+        onViewportEnter={() => {
+          setNavValue("skills");
+        }}
+        viewport={{ amount: 0.5 }}
+      >
+        <Box
+          width="100%"
+          display="flex"
           justifyContent="center"
-          alignItems="center"
-          spacing={8}
+          {...fadeInProps}
         >
-          <Paper
-            elevation={hoverItem === null ? 0 : 6}
-            sx={{ width: "500px", height: "500px" }}
-          >
-            {leftPanel}
-          </Paper>
-          <SplitablePaper
-            width="500px"
-            height="500px"
-            elevation={6}
-            splitDirection="vertical"
-            spacing={4}
-            animate={isSplit1 ? "split" : "joined"}
-            onViewportEnter={() => {
-              setIsSplit1(true);
-            }}
-            onViewportLeave={() => {
-              setIsSplit1(false);
-            }}
-            viewport={{ amount: "all" }}
-          >
-            <SplitablePaper
-              flex={3}
-              splitDirection="horizontal"
-              spacing={4}
-              animate={isSplit2 ? "split" : "joined"}
-            >
-              <Paper
-                component={motion.div}
-                elevation={hoverItem === "react" ? 12 : undefined}
-                sx={{ flex: 1, overflow: "clip" }}
+          {infoText}
+        </Box>
+        <Box component="div" display="flex" justifyContent="center">
+          <ClickAwayListener onClickAway={() => setTargetItem(null)}>
+            <Box {...fadeInProps}>
+              <SplitablePaper
+                width={["300px", "500px", "500px"]}
+                height={["300px", "500px", "500px"]}
+                elevation={2}
+                splitDirection="vertical"
+                spacing={bigGaps ? 4 : 2}
+                animate={isSplit1 ? "split" : "joined"}
+                onViewportEnter={() => {
+                  setIsSplit1(true);
+                }}
+                onViewportLeave={() => {
+                  setIsSplit1(false);
+                  setTargetItem(null);
+                }}
+                viewport={{ amount: 0.8 }}
               >
-                <Button
-                  onClick={() => {
-                    setHoverItem("react");
-                  }}
-                  sx={{ width: "100%", height: "100%", p: 0 }}
+                <SplitablePaper
+                  flex={3}
+                  splitDirection="horizontal"
+                  spacing={bigGaps ? 4 : 2}
+                  animate={isSplit2 ? "split" : "joined"}
                 >
-                  <img
-                    src={"/images/react-1.svg"}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      objectPosition: "center",
+                  <Paper
+                    component={motion.div}
+                    elevation={targetItem === "react" ? 8 : undefined}
+                    sx={{
+                      flex: 1,
+                      overflow: "clip",
+                      backgroundColor: theme.palette.primary.main,
                     }}
-                  />
-                </Button>
-              </Paper>
-              <Paper
-                component={motion.div}
-                elevation={hoverItem === "typescript" ? 12 : undefined}
-                sx={{ flex: 2, overflow: "clip" }}
-              >
-                <Button
-                  onClick={() => {
-                    setHoverItem("typescript");
-                  }}
-                  sx={{ width: "100%", height: "100%", p: 0 }}
+                  >
+                    <Button
+                      onMouseOver={() => {
+                        setTargetItem("react");
+                      }}
+                      onMouseLeave={() => {
+                        setTargetItem(null);
+                      }}
+                      sx={{ width: "100%", height: "100%" }}
+                    >
+                      <img
+                        alt="React logo"
+                        src={"/images/blank-react.svg"}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                          objectPosition: "center",
+                        }}
+                      />
+                    </Button>
+                  </Paper>
+                  <Paper
+                    component={motion.div}
+                    elevation={targetItem === "typescript" ? 8 : undefined}
+                    sx={{
+                      flex: 2,
+                      overflow: "clip",
+                      backgroundColor: theme.palette.primary.main,
+                    }}
+                  >
+                    <Button
+                      onMouseOver={() => {
+                        setTargetItem("typescript");
+                      }}
+                      onMouseLeave={() => {
+                        setTargetItem(null);
+                      }}
+                      sx={{ width: "100%", height: "100%" }}
+                    >
+                      <img
+                        alt="TypeScript logo"
+                        src={"/images/blank-ts.svg"}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          objectPosition: "center",
+                        }}
+                      />
+                    </Button>
+                  </Paper>
+                </SplitablePaper>
+                <SplitablePaper
+                  flex={2}
+                  splitDirection="horizontal"
+                  spacing={bigGaps ? 4 : 2}
+                  animate={isSplit3 ? "split" : "joined"}
                 >
-                  <img
-                    src={"/images/typescript-design-assets/ts-logo-128.svg"}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      objectPosition: "center",
+                  <Paper
+                    component={motion.div}
+                    elevation={targetItem === "java" ? 8 : undefined}
+                    sx={{
+                      flex: 2,
+                      overflow: "clip",
+                      backgroundColor: theme.palette.primary.main,
                     }}
-                  />
-                </Button>
-              </Paper>
-            </SplitablePaper>
-            <SplitablePaper
-              flex={2}
-              splitDirection="horizontal"
-              spacing={4}
-              animate={isSplit3 ? "split" : "joined"}
-            >
-              <Paper sx={{ flex: 1 }}>Next.js</Paper>
-              <Paper sx={{ flex: 1 }}>Three.js</Paper>
-            </SplitablePaper>
-          </SplitablePaper>
-        </Stack>
-      </ClickAwayListener>
-    </Container>
+                  >
+                    <Button
+                      onMouseOver={() => {
+                        setTargetItem("java");
+                      }}
+                      onMouseLeave={() => {
+                        setTargetItem(null);
+                      }}
+                      sx={{ width: "100%", height: "100%" }}
+                    >
+                      <img
+                        alt="Java logo"
+                        src={"/images/blank-java.svg"}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                          objectPosition: "center",
+                        }}
+                      />
+                    </Button>
+                  </Paper>
+                  <Paper
+                    component={motion.div}
+                    elevation={targetItem === "mui" ? 8 : undefined}
+                    sx={{
+                      flex: 2,
+                      overflow: "clip",
+                      backgroundColor: theme.palette.primary.main,
+                    }}
+                  >
+                    <Button
+                      onMouseOver={() => {
+                        setTargetItem("mui");
+                      }}
+                      onMouseLeave={() => {
+                        setTargetItem(null);
+                      }}
+                      sx={{ width: "100%", height: "100%" }}
+                    >
+                      <img
+                        alt="Material UI logo"
+                        src={"/images/blank-mui.svg"}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                          objectPosition: "center",
+                        }}
+                      />
+                    </Button>
+                  </Paper>
+                </SplitablePaper>
+              </SplitablePaper>
+            </Box>
+          </ClickAwayListener>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 

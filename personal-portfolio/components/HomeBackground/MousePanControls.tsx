@@ -4,11 +4,7 @@ import { MathUtils } from "three";
 import { scale } from "../../utility/other/numberUtils";
 
 export type AxisConstraint = [number, number];
-export type PositionConstraints = [
-  x: AxisConstraint,
-  y: AxisConstraint,
-  z: AxisConstraint
-];
+export type PositionConstraints = [x: AxisConstraint, y: AxisConstraint];
 export type RotationConstraints = [x: AxisConstraint, y: AxisConstraint];
 
 type Props = {
@@ -21,25 +17,6 @@ const MousePanControls: FC<Props> = ({
   rotationConstraints,
 }) => {
   const { camera } = useThree();
-
-  useEffect(() => {
-    const scrollListener = (event: Event) => {
-      const screenScrollPercentage = window.scrollY / window.innerHeight;
-      const newZ = scale(
-        screenScrollPercentage,
-        0,
-        1,
-        positionConstraints[2][0],
-        positionConstraints[2][1]
-      );
-      camera.position.set(camera.position.x, camera.position.y, newZ);
-    };
-    window.addEventListener("scroll", scrollListener);
-
-    return () => {
-      window.removeEventListener("scroll", scrollListener);
-    };
-  }, []);
 
   useFrame((state) => {
     const mouseX = state.mouse.x;
