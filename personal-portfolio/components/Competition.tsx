@@ -3,12 +3,11 @@ import { motion } from "framer-motion";
 import { FC, useContext, useEffect, useRef } from "react";
 import { NavContext } from "../utility/context/NavProvider";
 
+import { fadeInProps } from "../utility/other/fadeInProps";
 import Gauntlet from "./CompetitiveProjects/Gauntlet";
 import NEDC from "./CompetitiveProjects/NEDC";
 import Petri from "./CompetitiveProjects/Petri";
 import RoboCup from "./CompetitiveProjects/RoboCup";
-import Soccerbot from "./CompetitiveProjects/Soccerbot";
-import FadeInWrapper, { fadeInProps } from "../utility/other/fadeInProps";
 
 type Props = {};
 

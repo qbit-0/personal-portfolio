@@ -60,7 +60,7 @@ const Contact: FC<Props> = (props) => {
             >
               <img
                 title="photo of Duy"
-                src="/images/me/stand.jpg"
+                src="/images/me/Stand.jpg"
                 className="fill"
               />
             </Paper>

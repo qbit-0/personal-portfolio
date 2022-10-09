@@ -16,7 +16,9 @@ type Props = TabsProps;
 const NavBar: FC<Props> = (props) => {
   const { navValue, navCallbacks } = useContext(NavContext);
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const matches = useMediaQuery(theme.breakpoints.up("sm"), {
+    defaultMatches: true,
+  });
 
   const handleNavChange = (event: SyntheticEvent, value: NavValue) => {
     const navCallback = navCallbacks[value].navCallback;
