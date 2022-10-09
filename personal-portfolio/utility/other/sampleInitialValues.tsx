@@ -198,8 +198,10 @@ export const INITIAL_ACCOUNTS: SampleContextType["accounts"] = {
     name: "asdf",
     username: "asdf",
     traits: ["random"],
-    banner: "https://picsum.photos/2000/2000",
-    avatar: "https://picsum.photos/2000/2000",
+    banner:
+      "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80",
     posts: new Set([2]),
     liked: new Set([1, 4]),
     saved: new Set([]),
@@ -251,8 +253,9 @@ export const INITIAL_POSTS: SampleContextType["posts"] = {
     postId: 4,
     author: 2,
     createdAt: Date.now() - 1000000,
-    text: "check this out",
-    media: "https://picsum.photos/2000/2000",
+    text: "cat",
+    media:
+      "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80",
     likes: 3,
     replies: new Set([]),
   },

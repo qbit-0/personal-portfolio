@@ -40,8 +40,8 @@ const CongressionalAppChallenge = (props: Props) => {
         <Box component="div" flex={2}>
           <ImageList cols={1}>
             <CustomImageListItem
-              src="/videos/competitions/Petri/Petri Fast Forward.mkv"
-              title="Petri Gameplay, 13 Minutes Fast-Forwarded"
+              src="/videos/competitions/Petri/Petri Fast Forward.mp4"
+              title="Petri, 13 Minutes Fast-Forwarded"
               isVideo
             />
           </ImageList>
