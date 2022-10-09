@@ -1,23 +1,13 @@
-import {
-  Box,
-  createTheme,
-  Modal,
-  Paper,
-  Portal,
-  Stack,
-  ThemeProvider,
-} from "@mui/material";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import darkThemeOptions from "../../styles/theme/darkThemeOptions";
+import { Box, Paper, Stack } from "@mui/material";
+import { FC, useState } from "react";
 import PostsProvider from "../../utility/context/SampleProvider";
+import { fadeInProps } from "../../utility/other/fadeInProps";
 import {
   INITIAL_ACCOUNTS,
   INITIAL_ACCOUNT_ID,
   INITIAL_POSTS,
   INITIAL_POST_ID,
 } from "../../utility/other/sampleInitialValues";
-import FadeInWrapper, { fadeInProps } from "../../utility/other/fadeInProps";
 
 import ScalingContainer from "../ScalingContainer";
 import SampleContent from "./SampleContent";
@@ -28,7 +18,7 @@ import SampleControls, {
 
 type Props = {};
 
-const Sample = (props: Props) => {
+const Sample: FC<Props> = () => {
   const [targetWidth, setTargetWidth] = useState<number>(
     PRESET_WIDTHS[DEFAULT_PRESET]
   );

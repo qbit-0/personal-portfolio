@@ -147,12 +147,7 @@ const Skills: FC<Props> = (props) => {
                       <img
                         alt="React logo"
                         src={"/images/blank-react.svg"}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "contain",
-                          objectPosition: "center",
-                        }}
+                        className="contain fill"
                       />
                     </Button>
                   </Paper>
@@ -177,12 +172,7 @@ const Skills: FC<Props> = (props) => {
                       <img
                         alt="TypeScript logo"
                         src={"/images/blank-ts.svg"}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          objectPosition: "center",
-                        }}
+                        className="fill"
                       />
                     </Button>
                   </Paper>
@@ -214,12 +204,7 @@ const Skills: FC<Props> = (props) => {
                       <img
                         alt="Java logo"
                         src={"/images/blank-java.svg"}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "contain",
-                          objectPosition: "center",
-                        }}
+                        className="contain fill"
                       />
                     </Button>
                   </Paper>
@@ -244,12 +229,7 @@ const Skills: FC<Props> = (props) => {
                       <img
                         alt="Material UI logo"
                         src={"/images/blank-mui.svg"}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "contain",
-                          objectPosition: "center",
-                        }}
+                        className="contain fill"
                       />
                     </Button>
                   </Paper>

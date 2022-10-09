@@ -1,4 +1,4 @@
-import { Email, GitHub } from "@mui/icons-material";
+import { GitHub } from "@mui/icons-material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import {
   Box,
@@ -15,7 +15,7 @@ import {
 import { motion } from "framer-motion";
 import { FC, useContext, useEffect, useRef } from "react";
 import { NavContext } from "../utility/context/NavProvider";
-import FadeInWrapper, { fadeInProps } from "../utility/other/fadeInProps";
+import { fadeInProps } from "../utility/other/fadeInProps";
 
 type Props = {};
 
@@ -59,12 +59,9 @@ const Contact: FC<Props> = (props) => {
               {...fadeInProps}
             >
               <img
+                title="photo of Duy"
                 src="/images/me/stand.jpg"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
+                className="fill"
               />
             </Paper>
           )}
@@ -83,7 +80,7 @@ const Contact: FC<Props> = (props) => {
                 mt={4}
                 {...fadeInProps}
               >
-                <Link underline="none" href="" download>
+                <Link underline="none" href="/pdf/Resume-Duy-Pham.pdf" download>
                   <Button variant="contained">Check Out My Resume</Button>
                 </Link>
               </Box>
@@ -95,15 +92,6 @@ const Contact: FC<Props> = (props) => {
             justifyContent="center"
             alignItems="end"
           >
-            <IconButton
-              color="primary"
-              onClick={() => {
-                window.open("", "_blank");
-              }}
-              {...fadeInProps}
-            >
-              <Email />
-            </IconButton>
             <IconButton
               color="primary"
               onClick={() => {

@@ -1,15 +1,14 @@
 import {
   Box,
+  ClickAwayListener,
   IconButton,
   ImageListItem,
   ImageListItemBar,
   Modal,
-  Portal,
 } from "@mui/material";
 import { FC, useState } from "react";
 
 import InfoIcon from "@mui/icons-material/Info";
-import { fadeInProps } from "../utility/other/fadeInProps";
 
 type Props = {
   src: string;
@@ -33,13 +32,7 @@ const CompetitionImage: FC<Props> = ({
   const media = isVideo ? (
     <video src={src} controls width="100%" height="100%" />
   ) : (
-    <img
-      src={src}
-      title={title}
-      width="100%"
-      height="100%"
-      style={{ objectFit: "contain" }}
-    />
+    <img src={src} title={title} className="contain fill" />
   );
 
   return (
@@ -57,28 +50,28 @@ const CompetitionImage: FC<Props> = ({
           }
         />
       </ImageListItem>
-      <Modal
-        open={open}
-        onClose={() => {
-          setOpen(false);
-        }}
-      >
+      <Modal open={open}>
         <Box
           component="div"
           position="absolute"
-          width="full"
-          height="full"
-          left="50%"
-          top="50%"
-          bgcolor="white"
-          sx={{ transform: "translate(-50%, -50%)" }}
+          width="100%"
+          height="100%"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
         >
-          <Box component="div" maxWidth="90vw" maxHeight="90vh">
-            {media}
-            {description && (
-              <ImageListItemBar position="top" title={description} />
-            )}
-          </Box>
+          <ClickAwayListener
+            onClickAway={() => {
+              setOpen(false);
+            }}
+          >
+            <Box component="div" maxWidth="80vw" height="80vh" bgcolor="white">
+              {media}
+              {description && (
+                <ImageListItemBar position="top" title={description} />
+              )}
+            </Box>
+          </ClickAwayListener>
         </Box>
       </Modal>
     </>

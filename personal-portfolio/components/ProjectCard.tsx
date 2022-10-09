@@ -1,5 +1,4 @@
 import { Box, Button, Paper, Stack, Typography } from "@mui/material";
-import { motion } from "framer-motion";
 import { FC } from "react";
 import { fadeInProps } from "../utility/other/fadeInProps";
 
@@ -21,9 +20,8 @@ const ProjectCard: FC<Props> = ({ name, url, flipped = false }) => {
         >
           <iframe
             src={url}
-            width="100%"
-            height="100%"
-            style={{ border: "none" }}
+            title="interactivej project iframe"
+            className="noborder fill"
           />
         </Box>
         <Stack

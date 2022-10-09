@@ -8,7 +8,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { FC, useContext, useMemo } from "react";
+import { FC, useContext } from "react";
 
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import {
@@ -88,7 +88,12 @@ const SamplePost: FC<Props> = ({ account, post }) => {
             {post.isVideo ? (
               <video src={post.media} controls width="100%" height="100%" />
             ) : (
-              <img src={post.media} width="100%" height="100%" />
+              <img
+                src={post.media}
+                title="post image"
+                width="100%"
+                height="100%"
+              />
             )}
           </Box>
         )}

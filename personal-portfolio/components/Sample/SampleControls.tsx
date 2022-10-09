@@ -1,15 +1,9 @@
-import { Fullscreen } from "@mui/icons-material";
 import {
-  Box,
-  Button,
   FormControlLabel,
-  IconButton,
   Paper,
   Radio,
   RadioGroup,
   Slider,
-  Stack,
-  useTheme,
 } from "@mui/material";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 

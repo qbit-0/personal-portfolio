@@ -60,8 +60,7 @@ const Home: FC<Props> = (props) => {
         >
           <Box component="div">
             <Typography variant="h1">
-              Hey, I'm{" "}
-              <span style={{ color: theme.palette.primary.main }}>Duy</span>.
+              Hey, I'm <span id="name">Duy</span>.
             </Typography>
             <Typography variant="h2">Your Front-End Web Developer.</Typography>
           </Box>
