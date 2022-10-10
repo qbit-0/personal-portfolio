@@ -36,7 +36,7 @@ const NEDC = (props: Props) => {
         p={2}
       >
         <Box component="div" flex={2} height="100%">
-          <ImageList variant="masonry">
+          <ImageList cols={largeLayout ? 2 : 1}>
             <CustomImageListItem
               src={"/images/competitions/NEDC/NEDC 2nd Place.jpg"}
               title="Second Place Nationals"

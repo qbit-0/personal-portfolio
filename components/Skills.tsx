@@ -146,7 +146,7 @@ const Skills: FC<Props> = (props) => {
                       <img
                         alt="React logo"
                         src={"/images/blank-react.svg"}
-                        className="contain fill"
+                        className="contain fill block"
                       />
                     </Button>
                   </Paper>
@@ -171,7 +171,7 @@ const Skills: FC<Props> = (props) => {
                       <img
                         alt="TypeScript logo"
                         src={"/images/blank-ts.svg"}
-                        className="fill"
+                        className="fill block"
                       />
                     </Button>
                   </Paper>
@@ -203,7 +203,7 @@ const Skills: FC<Props> = (props) => {
                       <img
                         alt="Java logo"
                         src={"/images/blank-java.svg"}
-                        className="contain fill"
+                        className="contain fill block"
                       />
                     </Button>
                   </Paper>
@@ -228,7 +228,7 @@ const Skills: FC<Props> = (props) => {
                       <img
                         alt="Material UI logo"
                         src={"/images/blank-mui.svg"}
-                        className="contain fill"
+                        className="contain fill block"
                       />
                     </Button>
                   </Paper>

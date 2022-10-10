@@ -38,7 +38,7 @@ const RoboCup = (props: Props) => {
         p={2}
       >
         <Box component="div" flex={2}>
-          <ImageList>
+          <ImageList cols={largeLayout ? 2 : 1}>
             <CustomImageListItem
               src="/images/competitions/RoboCup/RoboCup CAD.png"
               title="CAD Model"

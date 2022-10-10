@@ -1,6 +1,7 @@
 import { GitHub } from "@mui/icons-material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import {
+  Avatar,
   Box,
   Button,
   Container,
@@ -31,6 +32,14 @@ const Contact: FC<Props> = (props) => {
     });
   }, [navRef]);
 
+  const photo = (
+    <img
+      title="photo of Duy"
+      src="/images/me/Stand.jpg"
+      className="fill block"
+    />
+  );
+
   return (
     <Container
       component={motion.div}
@@ -57,11 +66,7 @@ const Contact: FC<Props> = (props) => {
               }}
               {...fadeInProps}
             >
-              <img
-                title="photo of Duy"
-                src="/images/me/Stand.jpg"
-                className="fill"
-              />
+              {photo}
             </Paper>
           )}
           <Stack position="relative" component="div" flex={2}>

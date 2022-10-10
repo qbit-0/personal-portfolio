@@ -30,8 +30,16 @@ a {
   height: 100%;
 }
 
+.block {
+  display: block;
+}
+
 img.contain {
   object-fit: contain;
+}
+
+img.object-position-center {
+  object-position: center;
 }
 
 iframe.noborder {
