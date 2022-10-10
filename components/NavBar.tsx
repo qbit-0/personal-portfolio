@@ -20,31 +20,69 @@ const NavBar: FC<Props> = (props) => {
     defaultMatches: true,
   });
 
-  const handleNavChange = (event: SyntheticEvent, value: NavValue) => {
+  const handleNavClick = (value: NavValue) => {
     const navCallback = navCallbacks[value].navCallback;
-    if (navCallback !== undefined) navCallback();
+    return () => {
+      if (navCallback !== undefined) navCallback();
+    };
   };
 
   if (matches) {
     return (
-      <Tabs value={navValue} onChange={handleNavChange} {...props}>
+      <Tabs value={navValue} {...props}>
         {Object.entries(navLabels).map(([value, label], index) => (
-          <Tab sx={{ flex: 1 }} key={index} label={label} value={value} />
+          <Tab
+            sx={{ flex: 1 }}
+            key={index}
+            label={label}
+            value={value}
+            onClick={handleNavClick(value as NavValue)}
+          />
         ))}
       </Tabs>
     );
   } else {
     return (
       <>
-        <Tabs value={navValue} onChange={handleNavChange} {...props}>
-          <Tab sx={{ flex: 1 }} label={"Home"} value={"home"} />
-          <Tab sx={{ flex: 1 }} label={"About"} value={"about"} />
-          <Tab sx={{ flex: 1 }} label={"Projects"} value={"projects"} />
+        <Tabs value={navValue} {...props}>
+          <Tab
+            sx={{ flex: 1 }}
+            label={"Home"}
+            value={"home"}
+            onClick={handleNavClick("home")}
+          />
+          <Tab
+            sx={{ flex: 1 }}
+            label={"About"}
+            value={"about"}
+            onClick={handleNavClick("about")}
+          />
+          <Tab
+            sx={{ flex: 1 }}
+            label={"Projects"}
+            value={"projects"}
+            onClick={handleNavClick("projects")}
+          />
         </Tabs>
-        <Tabs value={navValue} onChange={handleNavChange} {...props}>
-          <Tab sx={{ flex: 1 }} label={"Skills"} value={"skills"} />
-          <Tab sx={{ flex: 1 }} label={"Competition"} value={"skills"} />
-          <Tab sx={{ flex: 1 }} label={"Contact"} value={"Contact"} />
+        <Tabs value={navValue} {...props}>
+          <Tab
+            sx={{ flex: 1 }}
+            label={"Skills"}
+            value={"skills"}
+            onClick={handleNavClick("skills")}
+          />
+          <Tab
+            sx={{ flex: 1 }}
+            label={"Competition"}
+            value={"competition"}
+            onClick={handleNavClick("competition")}
+          />
+          <Tab
+            sx={{ flex: 1 }}
+            label={"Contact"}
+            value={"Contact"}
+            onClick={handleNavClick("contact")}
+          />
         </Tabs>
       </>
     );

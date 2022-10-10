@@ -37,7 +37,6 @@ const Contact: FC<Props> = (props) => {
       ref={navRef}
       sx={{
         position: "relative",
-        minHeight: "100vh",
         py: 16,
       }}
       maxWidth="md"

@@ -18,7 +18,7 @@ export const INITIAL_ACCOUNTS: SampleContextType["accounts"] = {
     accountId: 0,
     name: "Duy Pham",
     username: "zero_1",
-    traits: ["casual", "ambitious"],
+    traits: ["casual", "team-player"],
     banner: "/images/outer_wilds.jpeg",
     avatar: "/images/me/Stand.jpg",
     posts: new Set([0, 1, 3]),

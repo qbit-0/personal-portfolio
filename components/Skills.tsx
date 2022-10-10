@@ -85,7 +85,6 @@ const Skills: FC<Props> = (props) => {
         ref={navRef}
         maxWidth="md"
         sx={{
-          minHeight: "100vh",
           py: 16,
         }}
         onViewportEnter={() => {

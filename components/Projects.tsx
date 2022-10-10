@@ -23,7 +23,6 @@ const Projects: FC<Props> = (props) => {
         component={motion.div}
         ref={navRef}
         sx={{
-          minHeight: "100vh",
           py: 16,
         }}
         maxWidth="md"

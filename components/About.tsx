@@ -32,7 +32,6 @@ const About: FC<Props> = (props) => {
       component={motion.div}
       maxWidth="md"
       sx={{
-        minHeight: "100vh",
         py: 16,
       }}
       onViewportEnter={() => {

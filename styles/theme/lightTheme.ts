@@ -22,6 +22,9 @@ const lightThemeOptions: ThemeOptions = {
     h3: {
       fontSize: "2rem",
     },
+    h4: {
+      fontSize: "1.5rem",
+    },
     h6: {
       fontSize: "0.75rem",
     },
@@ -48,6 +51,12 @@ lightTheme.typography.h3 = {
   ...lightTheme.typography.h3,
   [lightTheme.breakpoints.up("sm")]: {
     fontSize: "3rem",
+  },
+};
+lightTheme.typography.h4 = {
+  ...lightTheme.typography.h4,
+  [lightTheme.breakpoints.up("sm")]: {
+    fontSize: "2rem",
   },
 };
 
