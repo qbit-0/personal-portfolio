@@ -39,8 +39,7 @@ const Competition: FC<Props> = (props) => {
       </Typography>
       <Typography variant="h4" mt={8} {...fadeInProps}>
         One of my hobbies is participating in engineering and programming
-        contests, usually with a team of my friends. Good times. Here's some of
-        the ones I still have photos of.
+        contests, usually with a team of my friends. Good times.
       </Typography>
 
       <Box mt={8} {...fadeInProps}>
