@@ -84,7 +84,11 @@ const Contact: FC<Props> = (props) => {
                 mt={4}
                 {...fadeInProps}
               >
-                <Link underline="none" href="/pdf/Resume-Duy-Pham.pdf" download>
+                <Link
+                  underline="none"
+                  href="/pdf/Duy-Pham-Resume-Oct2022.pdf"
+                  download
+                >
                   <Button variant="contained">Check Out My Resume</Button>
                 </Link>
               </Box>
