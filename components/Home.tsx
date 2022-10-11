@@ -39,6 +39,7 @@ const Home: FC<Props> = (props) => {
         onViewportEnter={() => {
           setNavValue("home");
         }}
+        viewport={{ amount: 0.5 }}
       >
         <Box component="div" position="absolute" width="100%" height="100%">
           <HomeCanvas />

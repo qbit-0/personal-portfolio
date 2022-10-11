@@ -80,7 +80,7 @@ const NavBar: FC<Props> = (props) => {
           <Tab
             sx={{ flex: 1 }}
             label={"Contact"}
-            value={"Contact"}
+            value={"contact"}
             onClick={handleNavClick("contact")}
           />
         </Tabs>
