@@ -226,7 +226,7 @@ export const INITIAL_POSTS: SampleContextType["posts"] = {
     postId: 1,
     author: 0,
     createdAt: Date.now() - 24090000,
-    text: "Been learning Three.js so I can make a 3d geometry thing for my personal porfolio. Thinking about doing this thing where meshes are built and destroyed. Responds to user input too. Hope it's not too laggy.",
+    text: "Been learning Three.js so I can make a 3d geometry thing for my personal portfolio. Thinking about doing this thing where meshes are built and destroyed. Responds to user input too. Hope it's not too laggy.",
     media: "/videos/floating.mkv",
     isVideo: true,
     likes: 1,
