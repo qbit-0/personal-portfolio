@@ -86,7 +86,7 @@ const Contact: FC<Props> = (props) => {
               >
                 <Link
                   underline="none"
-                  href="/pdf/Duy-Pham-Resume-Oct2022.pdf"
+                  href="/pdf/Resume-Duy-Pham-22-10-12.pdf"
                   download
                 >
                   <Button variant="contained">Check Out My Resume</Button>
@@ -104,7 +104,7 @@ const Contact: FC<Props> = (props) => {
               color="primary"
               onClick={() => {
                 window.open(
-                  "https://www.linkedin.com/in/duy-pham-a15160140",
+                  "https://www.linkedin.com/in/duy-pham-tech",
                   "_blank"
                 );
               }}
