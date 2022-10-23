@@ -14,7 +14,7 @@ const navLabels: Record<NavValue, string> = {
 type Props = TabsProps;
 
 const NavBar: FC<Props> = (props) => {
-  const { navValue, navCallbacks } = useContext(NavContext);
+  const { navValue, setNavValue, navCallbacks } = useContext(NavContext);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"), {
     defaultMatches: true,
@@ -24,12 +24,13 @@ const NavBar: FC<Props> = (props) => {
     const navCallback = navCallbacks[value].navCallback;
     return () => {
       if (navCallback !== undefined) navCallback();
+      setNavValue(value);
     };
   };
 
   if (matches) {
     return (
-      <Tabs value={navValue} {...props}>
+      <Tabs value={navValue} centered {...props}>
         {Object.entries(navLabels).map(([value, label], index) => (
           <Tab
             sx={{ flex: 1 }}
@@ -44,7 +45,7 @@ const NavBar: FC<Props> = (props) => {
   } else {
     return (
       <>
-        <Tabs value={navValue} {...props}>
+        <Tabs value={navValue} centered {...props}>
           <Tab
             sx={{ flex: 1 }}
             label={"Home"}
@@ -64,7 +65,7 @@ const NavBar: FC<Props> = (props) => {
             onClick={handleNavClick("projects")}
           />
         </Tabs>
-        <Tabs value={navValue} {...props}>
+        <Tabs value={navValue} centered {...props}>
           <Tab
             sx={{ flex: 1 }}
             label={"Skills"}
