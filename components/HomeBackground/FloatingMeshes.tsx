@@ -13,6 +13,7 @@ type Props = {};
 const FloatingMeshes: FC<Props> = (props) => {
   const [meshesProps, setMeshesProps] = useState<FloatingMeshProps[]>([]);
   const [count, setCount] = useState(0);
+  const [isWindowFocused, setIsWindowFocused] = useState(false);
 
   const removeMeshProps = (meshId: number) => {
     setMeshesProps(
@@ -65,11 +66,26 @@ const FloatingMeshes: FC<Props> = (props) => {
     setCount(count + initialMeshesCount + 1);
   }, []);
 
-  useInterval(() => {
-    addMeshProps();
-  }, 1000);
+  useEffect(() => {
+    const windowFocusListener = () => {
+      setIsWindowFocused(true);
+    };
+    window.addEventListener("focus", windowFocusListener);
 
-  useFrame(() => {});
+    const windowBlurListener = () => {
+      setIsWindowFocused(false);
+    };
+    window.addEventListener("blur", windowBlurListener);
+
+    return () => {
+      window.removeEventListener("focus", windowFocusListener);
+      window.removeEventListener("blur", windowBlurListener);
+    };
+  }, []);
+
+  useInterval(() => {
+    if (isWindowFocused) addMeshProps();
+  }, 1000);
 
   const meshes: JSX.Element[] = useMemo(
     () =>
