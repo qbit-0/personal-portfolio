@@ -38,10 +38,17 @@ const Projects: FC<Props> = (props) => {
           <ProjectCard
             name="DoomScroll"
             url="https://doomscroll.duypham.tech"
+            github_url="https://github.com/qbit-0/doom-scroll-v2"
+            description="Filter Reddit posts by sentiment."
           />
         </Stack>
         <Stack component={motion.div} spacing={8} alignItems="center" mt={8}>
-          <ProjectCard name="Collapse" url="https://collapse.duypham.tech" />
+          <ProjectCard
+            name="Collapse"
+            url="https://collapse.duypham.tech"
+            github_url="https://github.com/qbit-0/wave-function-collapse"
+            description="Generate procedural worlds with wave-function collapse."
+          />
         </Stack>
       </Container>
     </>

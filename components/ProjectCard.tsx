@@ -5,10 +5,11 @@ import { fadeInProps } from "../utility/other/fadeInProps";
 type Props = {
   name: string;
   url: string;
-  flipped?: boolean;
+  github_url: string;
+  description: string;
 };
 
-const ProjectCard: FC<Props> = ({ name, url, flipped = false }) => {
+const ProjectCard: FC<Props> = ({ name, url, github_url, description }) => {
   return (
     <Paper sx={{ width: "100%", overflow: "clip" }} {...fadeInProps}>
       <Stack width="100%" height="600px">
@@ -35,14 +36,27 @@ const ProjectCard: FC<Props> = ({ name, url, flipped = false }) => {
           <Typography variant="h3" fontWeight="bold">
             {name}
           </Typography>
-          <Button
-            variant="contained"
-            onClick={() => {
-              window.open(url, "_blank");
-            }}
-          >
-            View Project
-          </Button>
+          <Typography variant="h5" fontWeight="thin">
+            {description}
+          </Typography>
+          <Stack direction="row" spacing={2}>
+            <Button
+              variant="contained"
+              onClick={() => {
+                window.open(url, "_blank");
+              }}
+            >
+              View Project
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => {
+                window.open(github_url, "_blank");
+              }}
+            >
+              View Github
+            </Button>
+          </Stack>
         </Stack>
       </Stack>
     </Paper>
