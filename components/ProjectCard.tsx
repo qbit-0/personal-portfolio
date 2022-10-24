@@ -15,6 +15,7 @@ const ProjectCard: FC<Props> = ({ name, url, github_url, description }) => {
       <Stack width="100%" height="600px">
         <Box
           component="div"
+          p={2}
           sx={{
             flex: 2,
           }}
