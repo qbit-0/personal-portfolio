@@ -40,6 +40,9 @@ const Projects: FC<Props> = (props) => {
             url="https://doomscroll.duypham.tech"
           />
         </Stack>
+        <Stack component={motion.div} spacing={8} alignItems="center" mt={8}>
+          <ProjectCard name="Collapse" url="https://collapse.duypham.tech" />
+        </Stack>
       </Container>
     </>
   );
