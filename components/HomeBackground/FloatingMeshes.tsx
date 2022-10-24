@@ -13,7 +13,7 @@ type Props = {};
 const FloatingMeshes: FC<Props> = (props) => {
   const [meshesProps, setMeshesProps] = useState<FloatingMeshProps[]>([]);
   const [count, setCount] = useState(0);
-  const [isWindowFocused, setIsWindowFocused] = useState(false);
+  const [isWindowFocused, setIsWindowFocused] = useState(true);
 
   const removeMeshProps = (meshId: number) => {
     setMeshesProps(
