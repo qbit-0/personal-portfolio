@@ -86,7 +86,7 @@ const Contact: FC<Props> = (props) => {
               >
                 <Link
                   underline="none"
-                  href="/pdf/Resume-Duy-Pham-22-10-12.pdf"
+                  href="/pdf/Resume-Duy-Pham-22-10-24.pdf"
                   download
                 >
                   <Button variant="contained">Check Out My Resume</Button>
