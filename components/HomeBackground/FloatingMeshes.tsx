@@ -1,9 +1,8 @@
 import { Physics } from "@react-three/cannon";
-import { useFrame } from "@react-three/fiber";
 import { FC, useEffect, useMemo, useState } from "react";
+import { randFloat } from "three/src/math/MathUtils";
 
 import useInterval from "../../utility/hooks/useInterval";
-import { getRandomRange } from "../../utility/other/numberUtils";
 import FloatingMesh, { FloatingMeshProps } from "./FloatingMesh";
 
 const initialMeshesCount = 10;
@@ -24,16 +23,12 @@ const FloatingMeshes: FC<Props> = (props) => {
   const addMeshProps = () => {
     const meshProps: FloatingMeshProps = {
       meshId: count,
-      scale: getRandomRange(0.5, 4),
-      position: [
-        getRandomRange(-30, 30),
-        getRandomRange(-20, -20),
-        getRandomRange(-60, 2),
-      ],
+      scale: randFloat(0.5, 4),
+      position: [randFloat(-30, 30), randFloat(-20, -20), randFloat(-60, 2)],
       rotation: [
-        getRandomRange(0, Math.PI * 2),
-        getRandomRange(0, Math.PI * 2),
-        getRandomRange(0, Math.PI * 2),
+        randFloat(0, Math.PI * 2),
+        randFloat(0, Math.PI * 2),
+        randFloat(0, Math.PI * 2),
       ],
     };
 
@@ -46,16 +41,12 @@ const FloatingMeshes: FC<Props> = (props) => {
     for (let i = 0; i < initialMeshesCount; i++) {
       const meshProps: FloatingMeshProps = {
         meshId: count + i,
-        scale: getRandomRange(0.5, 4),
-        position: [
-          getRandomRange(-30, 30),
-          getRandomRange(-10, 5),
-          getRandomRange(-60, 2),
-        ],
+        scale: randFloat(0.5, 4),
+        position: [randFloat(-30, 30), randFloat(-10, 5), randFloat(-60, 2)],
         rotation: [
-          getRandomRange(0, Math.PI * 2),
-          getRandomRange(0, Math.PI * 2),
-          getRandomRange(0, Math.PI * 2),
+          randFloat(0, Math.PI * 2),
+          randFloat(0, Math.PI * 2),
+          randFloat(0, Math.PI * 2),
         ],
       };
 
