@@ -4,7 +4,7 @@ import { MeshDistortMaterial } from "@react-three/drei";
 import { ThreeElements, useFrame } from "@react-three/fiber";
 import { FC, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import { getRandomRange } from "../../utility/other/numberUtils";
+import { randFloat } from "three/src/math/MathUtils";
 
 export type FloatingMeshProps = ThreeElements["group"] & {
   meshId: number;
@@ -20,12 +20,12 @@ const FloatingMesh: FC<FloatingMeshProps> = ({
   position = [0, 0, 0],
   rotation = [0, 0, 0],
 }) => {
-  const xVel = useMemo(() => getRandomRange(-0.2, 0.2), []);
-  const yVel = useMemo(() => getRandomRange(1, 2), []);
-  const zVel = useMemo(() => getRandomRange(-0.2, 0), []);
-  const xAngleVel = useMemo(() => getRandomRange(-0.3, 0.3), []);
-  const yAngleVel = useMemo(() => getRandomRange(-0.3, 0.3), []);
-  const zAngleVel = useMemo(() => getRandomRange(-0.3, 0.3), []);
+  const xVel = useMemo(() => randFloat(-0.2, 0.2), []);
+  const yVel = useMemo(() => randFloat(1, 2), []);
+  const zVel = useMemo(() => randFloat(-0.2, 0), []);
+  const xAngleVel = useMemo(() => randFloat(-0.3, 0.3), []);
+  const yAngleVel = useMemo(() => randFloat(-0.3, 0.3), []);
+  const zAngleVel = useMemo(() => randFloat(-0.3, 0.3), []);
   const [isHovered, setIsHovered] = useState(false);
 
   const groupRef = useRef<THREE.Group>(null!);
