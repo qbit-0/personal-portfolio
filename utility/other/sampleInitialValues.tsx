@@ -48,7 +48,7 @@ export const INITIAL_ACCOUNTS: SampleContextType["accounts"] = {
                 <Typography variant="h6" display="inline">
                   Awards and Honors:{" "}
                   <PopoverChip
-                    label="AP Schollar with Distinction"
+                    label="AP Scholar with Distinction"
                     text="Score of at least 3.5 on all exams taken, 3 or higher on at least 5 exams."
                   />
                 </Typography>
