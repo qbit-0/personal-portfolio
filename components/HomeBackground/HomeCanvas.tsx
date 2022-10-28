@@ -1,6 +1,6 @@
 import { Environment, Float, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { FC } from "react";
+import { FC, Suspense } from "react";
 import { BackSide } from "three";
 import FloatingMeshes from "./FloatingMeshes";
 import MousePanControls, {
@@ -34,15 +34,9 @@ const HomeCanvas: FC<Props> = (props) => {
       <ambientLight intensity={0.2} />
       <directionalLight intensity={1} position={[-10, 10, 10]} />
       <PanningPointLight />
-      <FloatingMeshes />
-      {/* <mesh rotation={[-Math.PI / 2, 0, Math.PI / 3]} position={[0, 10, 0]}>
-        <planeGeometry args={[1000, 1000, 250, 250]} />
-        <meshBasicMaterial color="black" side={BackSide} />
-      </mesh> */}
-      {/* <mesh rotation={[-Math.PI / 2, 0, Math.PI / 3]} position={[0, 4, 0]}>
-        <planeGeometry args={[1000, 1000, 250, 250]} />
-        <meshBasicMaterial color="gray" wireframe />
-      </mesh> */}
+      <Suspense fallback={null}>
+        <FloatingMeshes />
+      </Suspense>
       <mesh rotation={[-Math.PI / 2, 0, Math.PI / 3]} position={[0, -20, 0]}>
         <planeGeometry args={[1000, 1000, 250, 250]} />
         <meshBasicMaterial color="gray" wireframe />
