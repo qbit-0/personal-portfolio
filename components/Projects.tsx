@@ -44,6 +44,14 @@ const Projects: FC<Props> = (props) => {
         </Stack>
         <Stack component={motion.div} spacing={8} alignItems="center" mt={8}>
           <ProjectCard
+            name="Flocks"
+            url="https://flocks.duypham.tech"
+            github_url="https://github.com/qbit-0/flocks"
+            description="Simulate flocks of birds."
+          />
+        </Stack>
+        <Stack component={motion.div} spacing={8} alignItems="center" mt={8}>
+          <ProjectCard
             name="Collapse"
             url="https://collapse.duypham.tech"
             github_url="https://github.com/qbit-0/wave-function-collapse"
