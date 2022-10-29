@@ -30,7 +30,7 @@ const Footer = (props: Props) => {
               );
             }}
           >
-            Source code
+            source code
           </Link>
           .
         </Typography>
