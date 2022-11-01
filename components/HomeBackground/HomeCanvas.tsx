@@ -1,7 +1,8 @@
-import { Environment, Float, PerspectiveCamera } from "@react-three/drei";
+import { Box } from "@mui/system";
+import { Environment, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { FC, Suspense } from "react";
-import { BackSide } from "three";
+import useDetectWebGL from "../../utility/hooks/useDetectWebGL";
 import FloatingMeshes from "./FloatingMeshes";
 import MousePanControls, {
   PositionConstraints,
@@ -22,6 +23,10 @@ const rotationConstraints: RotationConstraints = [
 type Props = {};
 
 const HomeCanvas: FC<Props> = (props) => {
+  const isWebGlDetected = useDetectWebGL();
+
+  if (!isWebGlDetected) return <Box component="div" bgcolor="white" />;
+
   return (
     <Canvas>
       <PerspectiveCamera makeDefault position={[0, 1, 5]} fov={60} />
