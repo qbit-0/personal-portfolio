@@ -37,6 +37,7 @@ const Projects: FC<Props> = (props) => {
         <Stack component={motion.div} spacing={8} alignItems="center" mt={8}>
           <ProjectCard
             name="DoomScroll"
+            image="images/website_previews/doom_scroll_preview.png"
             url="https://doomscroll.duypham.tech"
             github_url="https://github.com/qbit-0/doom-scroll-v2"
             description="Filter Reddit posts by sentiment."
@@ -45,6 +46,7 @@ const Projects: FC<Props> = (props) => {
         <Stack component={motion.div} spacing={8} alignItems="center" mt={8}>
           <ProjectCard
             name="Collapse"
+            image="images/website_previews/collapse_preview.png"
             url="https://collapse.duypham.tech"
             github_url="https://github.com/qbit-0/wave-function-collapse"
             description="Generate procedural worlds with wave-function collapse."
@@ -53,6 +55,7 @@ const Projects: FC<Props> = (props) => {
         <Stack component={motion.div} spacing={8} alignItems="center" mt={8}>
           <ProjectCard
             name="Flocks"
+            image="images/website_previews/flocks_preview.png"
             url="https://flocks.duypham.tech"
             github_url="https://github.com/qbit-0/flocks"
             description="Simulate flocks of birds."

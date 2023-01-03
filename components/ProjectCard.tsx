@@ -4,15 +4,22 @@ import { fadeInProps } from "../utility/other/fadeInProps";
 
 type Props = {
   name: string;
+  image: string;
   url: string;
   github_url: string;
   description: string;
 };
 
-const ProjectCard: FC<Props> = ({ name, url, github_url, description }) => {
+const ProjectCard: FC<Props> = ({
+  name,
+  image,
+  url,
+  github_url,
+  description,
+}) => {
   return (
     <Paper sx={{ width: "100%", overflow: "clip" }} {...fadeInProps}>
-      <Stack width="100%" height="600px">
+      <Stack width="100%" height="700px">
         <Box
           component="div"
           p={2}
@@ -20,11 +27,7 @@ const ProjectCard: FC<Props> = ({ name, url, github_url, description }) => {
             flex: 2,
           }}
         >
-          <iframe
-            src={url}
-            title="interactivej project iframe"
-            className="noborder fill"
-          />
+          <img title="website preview" src={image} className="fill" />
         </Box>
         <Stack
           flex={1}
