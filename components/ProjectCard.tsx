@@ -28,6 +28,7 @@ const ProjectCard: FC<Props> = ({
           height="100%"
           justifyContent="center"
           alignItems="center"
+          p={2}
           spacing={2}
           {...fadeInProps}
         >
