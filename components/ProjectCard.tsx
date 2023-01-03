@@ -19,14 +19,8 @@ const ProjectCard: FC<Props> = ({
 }) => {
   return (
     <Paper sx={{ width: "100%", overflow: "clip" }} {...fadeInProps}>
-      <Stack width="100%" height="700px">
-        <Box
-          component="div"
-          p={2}
-          sx={{
-            flex: 2,
-          }}
-        >
+      <Stack width="100%">
+        <Box component="div" p={2}>
           <img title="website preview" src={image} className="fill" />
         </Box>
         <Stack
