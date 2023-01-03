@@ -9,6 +9,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FC, useContext, useEffect, useRef, useState } from "react";
 import { NavContext } from "../utility/context/NavProvider";
 import { fadeInProps } from "../utility/other/fadeInProps";

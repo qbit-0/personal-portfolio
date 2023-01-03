@@ -42,7 +42,7 @@ const Home: FC<Props> = (props) => {
         viewport={{ amount: 0.5 }}
       >
         <Box component="div" position="absolute" width="100%" height="100%">
-          {/* <HomeCanvas /> */}
+          <HomeCanvas />
         </Box>
         <Box component="div" position="absolute" width="100%">
           <NavBar />

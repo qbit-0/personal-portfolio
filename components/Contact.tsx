@@ -14,6 +14,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FC, useContext, useEffect, useRef } from "react";
 import { NavContext } from "../utility/context/NavProvider";
 import { fadeInProps } from "../utility/other/fadeInProps";
@@ -32,13 +33,7 @@ const Contact: FC<Props> = (props) => {
     });
   }, [navRef]);
 
-  const photo = (
-    <img
-      title="photo of Duy"
-      src="/images/me/Stand.jpg"
-      className="fill block"
-    />
-  );
+  const photo = <Image src={"/images/me/Stand.jpg"} layout="fill" />;
 
   return (
     <Container
