@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.4",
+    "@emotion/react": "^11.10.5",
     "@emotion/server": "^11.10.0",
-    "@emotion/styled": "^11.10.4",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/public-sans": "^4.5.11",
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.10.6",
     "@mui/lab": "^5.0.0-alpha.101",
     "@mui/material": "^5.10.7",
+    "@nivo/pie": "^0.80.0",
+    "@nivo/radar": "^0.80.0",
     "@react-three/cannon": "^6.4.0",
     "@react-three/drei": "^9.32.3",
     "@react-three/fiber": "^8.8.2",
