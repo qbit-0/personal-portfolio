@@ -10,7 +10,9 @@ const Projects = (props: Props) => {
     <Box component="section">
       <Container>
         <Typography variant="h3">Some of my projects.</Typography>
-        <Grid2 container spacing={8}>
+      </Container>
+      <Container>
+        <Grid2 container spacing={8} mt={8}>
           <Grid2 xs={6}>
             <ProjectCard
               name="DoomScroll"
@@ -32,7 +34,7 @@ const Projects = (props: Props) => {
           <Grid2 xs={6}>
             <ProjectCard
               name="Collapse"
-              desc="Generate pixel landscapes via wave-function-collapse."
+              desc="Generate pixel landscapes."
               image="/images/website_previews/collapse_preview.png"
               url="https://doomscroll.duypham.tech/"
               github="https://github.com/qbit-0/doom-scroll-v2"

@@ -30,9 +30,9 @@ const CompetitionImage: FC<Props> = ({
   };
 
   const media = isVideo ? (
-    <video src={src} controls className="fill block" />
+    <video src={src} controls style={{ width: "100%" }} />
   ) : (
-    <img src={src} title={title} className="contain fill block" />
+    <img src={src} title={title} />
   );
 
   return (

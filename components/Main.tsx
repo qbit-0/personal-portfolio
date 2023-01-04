@@ -11,7 +11,7 @@ type Props = {};
 const Main = (props: Props) => {
   return (
     <Box component="main" flex="1">
-      <Stack spacing={16}>
+      <Stack spacing={32}>
         <Hero />
         <About />
         <Projects />

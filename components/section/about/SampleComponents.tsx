@@ -12,7 +12,7 @@ import SampleProfile from "./SampleProfile";
 
 type Props = {};
 
-const BuildComponents = (props: Props) => {
+const SampleComponents = (props: Props) => {
   const [numComponents, setNumComponents] = useState(1);
 
   const handleSliderChange = (_: Event, value: number | number[]) => {
@@ -49,4 +49,4 @@ const BuildComponents = (props: Props) => {
   );
 };
 
-export default BuildComponents;
+export default SampleComponents;

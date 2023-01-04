@@ -1,33 +1,25 @@
 import {
   Accordion,
-  AccordionSummary,
-  Stack,
-  Typography,
+  Box,
+  Chip,
   Divider,
   ImageList,
-  Chip,
-  Box,
+  Stack,
+  Typography,
 } from "@mui/material";
-import React from "react";
-import CustomImageListItem from "../CustomImageListItem";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CustomImageListItem from "./CustomImageListItem";
+import CompetitiveProjectSummary from "./CompetitiveProjectSummary";
 
 type Props = {};
 
 const Soccerbot = (props: Props) => {
   return (
     <Accordion elevation={1}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Stack direction="row" spacing={2}>
-          <Box component="div" width={700}>
-            <Typography>MESA Soccer Bot Competition</Typography>
-            <Typography>Soccerbot</Typography>
-          </Box>
-          <Box component="div">
-            <Typography>High School</Typography>
-          </Box>
-        </Stack>
-      </AccordionSummary>
+      <CompetitiveProjectSummary
+        competition={"MESA Soccer Bot Competition"}
+        submission={"Bolsa Grande High School Soccerbot"}
+        type={"High School"}
+      />
       <Stack
         direction="row"
         spacing={2}

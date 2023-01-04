@@ -1,6 +1,7 @@
-import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import BuildComponents from "./BuildComponents";
+import SampleComponents from "./SampleComponents";
+import SampleData from "./SampleData";
 
 type Props = {};
 
@@ -12,25 +13,20 @@ const About = (props: Props) => {
           I'm a developer based in Orange County, California. I'm always willing
           to learn new tricks.
         </Typography>
+      </Container>
+      <Container>
+        <Stack spacing={8} mt={8}>
+          <SampleComponents />
 
-        <Stack spacing={8} mt={16}>
-          <BuildComponents />
-
-          <Card>
+          {/* <Card>
             <CardContent>
               <Typography variant="h4" gutterBottom>
                 I design intutive APIs.
               </Typography>
             </CardContent>
-          </Card>
+          </Card> */}
 
-          <Card>
-            <CardContent>
-              <Typography variant="h4" gutterBottom>
-                I bring data to life.
-              </Typography>
-            </CardContent>
-          </Card>
+          <SampleData />
         </Stack>
       </Container>
     </Box>

@@ -7,48 +7,64 @@ import {
   Stack,
   Toolbar,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Menu } from "@mui/icons-material";
 import SideNavDrawer from "./SideNavDrawer";
-
-const PAGES = [
-  "welcome",
-  "about",
-  "projects",
-  "skills",
-  "competitions",
-  "contact",
-];
+import { PAGES } from "../../pages";
 
 type Props = {};
 
 const Header = (props: Props) => {
+  const theme = useTheme();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
   return (
     <Box component="header">
       <AppBar position="fixed">
         <Toolbar>
           <Box
+            display={["block", "block", "none"]}
             component={IconButton}
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
             mr={2}
+            onClick={() => {
+              setIsDrawerOpen(true);
+            }}
           >
             <Menu />
           </Box>
-          <Typography variant="h6" flexGrow={1}>
+          <Typography
+            display={["none", "none", "block"]}
+            variant="h6"
+            flexGrow={1}
+          >
             Duy Pham
           </Typography>
-          <Stack direction="row" spacing={2}>
+          <Stack
+            display={["none", "none", "block"]}
+            direction="row"
+            spacing={2}
+          >
             {PAGES.map((page) => (
-              <Button color="inherit">{page}</Button>
+              <Button key={page} color="inherit">
+                {page}
+              </Button>
             ))}
           </Stack>
         </Toolbar>
       </AppBar>
-      <SideNavDrawer />
+      <SideNavDrawer
+        open={isDrawerOpen}
+        onClose={() => {
+          setIsDrawerOpen(false);
+        }}
+      />
     </Box>
   );
 };

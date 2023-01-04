@@ -4,10 +4,10 @@ import { FC, useContext, useEffect, useRef } from "react";
 import { NavContext } from "../utility/context/NavProvider";
 
 import { fadeInProps } from "../utility/other/fadeInProps";
-import Gauntlet from "./CompetitiveProjects/Gauntlet";
-import NEDC from "./CompetitiveProjects/NEDC";
-import Petri from "./CompetitiveProjects/Petri";
-import RoboCup from "./CompetitiveProjects/RoboCup";
+import Gauntlet from "../section/fun/CompetitiveProjects/Gauntlet";
+import NEDC from "../section/fun/CompetitiveProjects/NEDC";
+import Petri from "../section/fun/CompetitiveProjects/Petri";
+import RoboCup from "../section/fun/CompetitiveProjects/RoboCup";
 
 type Props = {};
 

@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.10.6",
     "@mui/lab": "^5.0.0-alpha.101",
     "@mui/material": "^5.10.7",
+    "@mui/x-data-grid": "^5.17.17",
     "@nivo/pie": "^0.80.0",
     "@nivo/radar": "^0.80.0",
     "@react-three/cannon": "^6.4.0",

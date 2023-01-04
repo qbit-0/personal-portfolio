@@ -11,8 +11,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { fadeInProps } from "../../utility/other/fadeInProps";
-import CustomImageListItem from "../CustomImageListItem";
+import CustomImageListItem from "./CustomImageListItem";
 import CompetitiveProjectSummary from "./CompetitiveProjectSummary";
 
 type Props = {};
@@ -22,7 +21,7 @@ const RoboCup = (props: Props) => {
   const largeLayout = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <Accordion elevation={1} {...fadeInProps}>
+    <Accordion elevation={1}>
       <CompetitiveProjectSummary
         competition={"IEEE RoboCup"}
         submission={"Tritons"}

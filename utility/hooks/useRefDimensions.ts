@@ -1,15 +1,22 @@
-import { MutableRefObject, Ref, RefObject, useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 
 const useRefDimensions = (ref: RefObject<HTMLDivElement>) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
     if (ref.current) {
-      const boundingRect = ref.current.getBoundingClientRect();
-      const { width, height } = boundingRect;
-      setDimensions({ width, height });
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          setDimensions({
+            width: entry.contentRect.width,
+            height: entry.contentRect.height,
+          });
+        }
+      });
+      resizeObserver.observe(ref.current);
+      return () => resizeObserver.disconnect();
     }
-  }, [ref]);
+  }, [ref.current]);
 
   return dimensions;
 };

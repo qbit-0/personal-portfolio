@@ -1,14 +1,14 @@
-import { Email, GitHub, Phone, Preview } from "@mui/icons-material";
+import { Email, GitHub, Phone } from "@mui/icons-material";
 import { Avatar, Box, Card, CardContent, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { createRef, useMemo, useRef } from "react";
+import { useRef } from "react";
 import useRefDimensions from "../../../utility/hooks/useRefDimensions";
 
 type Props = {};
 
 const SampleProfile = (props: Props) => {
-  const cardRef = createRef<HTMLDivElement>();
-  const { width, height } = useRefDimensions(cardRef);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { width } = useRefDimensions(cardRef);
 
   const md = width > 400;
   const lg = width > 600;
@@ -49,32 +49,24 @@ const SampleProfile = (props: Props) => {
               </Box>
             </Box>
             <Grid2 container spacing={1}>
-              <Grid2 xs={2}>
+              <Grid2 xs={1}>
                 <Email />
               </Grid2>
-              <Grid2 xs={10}>
+              <Grid2 xs={11}>
                 <Typography variant="body1">
                   duypham12241999@gmail.com
                 </Typography>
               </Grid2>
-              <Grid2 xs={2}>
+              <Grid2 xs={1}>
                 <Phone />
               </Grid2>
-              <Grid2 xs={10}>
+              <Grid2 xs={11}>
                 <Typography variant="body1">(714) 332-7916</Typography>
               </Grid2>
-              <Grid2 xs={2}>
-                <Preview />
-              </Grid2>
-              <Grid2 xs={10}>
-                <a href="https://duypham.tech/">
-                  <Typography variant="body2">https://duypham.tech/</Typography>
-                </a>
-              </Grid2>
-              <Grid2 xs={2}>
+              <Grid2 xs={1}>
                 <GitHub />
               </Grid2>
-              <Grid2 xs={10}>
+              <Grid2 xs={11}>
                 <a href="https://github.com/qbit-0">
                   <Typography variant="body2">
                     https://github.com/qbit-0

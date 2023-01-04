@@ -31,8 +31,12 @@ const ProjectCard: FC<Props> = ({ name, desc, image, url, github }) => {
         <Typography variant="h5">{desc}</Typography>
       </CardContent>
       <CardActions>
-        <Button>View Project</Button>
-        <Button>View Github</Button>
+        <a href={url}>
+          <Button>View Project</Button>
+        </a>
+        <a href={github}>
+          <Button>View Github</Button>
+        </a>
       </CardActions>
     </Card>
   );
