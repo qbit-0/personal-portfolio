@@ -9,7 +9,9 @@ const Projects = (props: Props) => {
   return (
     <Box component="section">
       <Container>
-        <Typography variant="h3">Some of my projects.</Typography>
+        <Typography variant="h3" fontWeight="bold">
+          Some of my projects.
+        </Typography>
       </Container>
       <Container>
         <Grid2 container spacing={8} mt={8}>

@@ -1,5 +1,5 @@
 import { Email, GitHub, Phone } from "@mui/icons-material";
-import { Box, Container, Typography, useTheme } from "@mui/material";
+import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import React from "react";
 
@@ -10,30 +10,24 @@ const Footer = (props: Props) => {
 
   return (
     <Box component="footer" bgcolor={theme.palette.primary.dark} p={4} mt={32}>
-      <Container>
-        <Grid2 container color="white">
-          <Grid2 xs={6}>
+      <Container maxWidth="lg">
+        <Grid2 container spacing={2} color="white">
+          <Grid2 xs={12} sm={6}>
             <Typography>Made by me, Duy</Typography>
             <Typography>With React, Next.js, Material UI</Typography>
             <Typography>Feel free to contact me anytime</Typography>
           </Grid2>
-          <Grid2 xs={6} container>
-            <Grid2 xs={1}>
+          <Grid2 xs={12} sm={6}>
+            <Stack direction="row" alignItems="center" spacing={2}>
               <Email />
-            </Grid2>
-            <Grid2 xs={11}>
-              <Typography variant="body1">duypham12241999@gmail.com</Typography>
-            </Grid2>
-            <Grid2 xs={1}>
+              <Typography variant="body2">duypham12241999@gmail.com</Typography>
+            </Stack>
+            <Stack direction="row" alignItems="center" spacing={2}>
               <Phone />
-            </Grid2>
-            <Grid2 xs={11}>
-              <Typography variant="body1">(714) 332-7916</Typography>
-            </Grid2>
-            <Grid2 xs={1}>
+              <Typography variant="body2">(714) 332-7916</Typography>
+            </Stack>
+            <Stack direction="row" alignItems="center" spacing={2}>
               <GitHub />
-            </Grid2>
-            <Grid2 xs={11}>
               <Box
                 component="a"
                 color="inherit"
@@ -43,7 +37,7 @@ const Footer = (props: Props) => {
                   https://github.com/qbit-0
                 </Typography>
               </Box>
-            </Grid2>
+            </Stack>
           </Grid2>
         </Grid2>
       </Container>

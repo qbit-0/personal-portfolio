@@ -8,7 +8,9 @@ const Skills = (props: Props) => {
   return (
     <Box component="section">
       <Container>
-        <Typography variant="h3">My skills.</Typography>
+        <Typography variant="h3" fontWeight="bold">
+          My skills.
+        </Typography>
       </Container>
       <Container maxWidth="sm">
         <Grid2 container mt={8} spacing={4}>

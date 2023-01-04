@@ -1,5 +1,12 @@
 import { Email, GitHub, Phone } from "@mui/icons-material";
-import { Avatar, Box, Card, CardContent, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Card,
+  CardContent,
+  Stack,
+  Typography,
+} from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { useRef } from "react";
 import useRefDimensions from "../../../utility/hooks/useRefDimensions";
@@ -14,7 +21,7 @@ const SampleProfile = (props: Props) => {
   const lg = width > 600;
 
   return (
-    <Box ref={cardRef} component={Card} flex="1 0 0">
+    <Box ref={cardRef} component={Card} flex="1 0 0" variant="outlined">
       <CardContent>
         <Grid2 container spacing={2}>
           {lg && (
@@ -48,37 +55,30 @@ const SampleProfile = (props: Props) => {
                 </Typography>
               </Box>
             </Box>
-            <Grid2 container spacing={1}>
-              <Grid2 xs={1}>
-                <Email />
-              </Grid2>
-              <Grid2 xs={11}>
-                <Typography variant="body1">
-                  duypham12241999@gmail.com
+            <Stack direction="row" alignItems="center" spacing={2}>
+              <Email />
+              <Typography variant="body2">duypham12241999@gmail.com</Typography>
+            </Stack>
+            <Stack direction="row" alignItems="center" spacing={2}>
+              <Phone />
+              <Typography variant="body2">(714) 332-7916</Typography>
+            </Stack>
+            <Stack direction="row" alignItems="center" spacing={2}>
+              <GitHub />
+              <Box
+                component="a"
+                color="inherit"
+                href="https://github.com/qbit-0"
+              >
+                <Typography variant="body2">
+                  https://github.com/qbit-0
                 </Typography>
-              </Grid2>
-              <Grid2 xs={1}>
-                <Phone />
-              </Grid2>
-              <Grid2 xs={11}>
-                <Typography variant="body1">(714) 332-7916</Typography>
-              </Grid2>
-              <Grid2 xs={1}>
-                <GitHub />
-              </Grid2>
-              <Grid2 xs={11}>
-                <a href="https://github.com/qbit-0">
-                  <Typography variant="body2">
-                    https://github.com/qbit-0
-                  </Typography>
-                </a>
-              </Grid2>
-            </Grid2>
+              </Box>
+            </Stack>
             <Card variant="outlined" sx={{ mt: 2 }}>
               <CardContent>
                 <Typography variant="h6">
                   Recent college grad looking to learn. Likes building stuff.
-                  Pretty much anything.
                 </Typography>
               </CardContent>
             </Card>

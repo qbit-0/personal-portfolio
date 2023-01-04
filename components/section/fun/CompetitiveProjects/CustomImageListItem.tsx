@@ -30,7 +30,7 @@ const CompetitionImage: FC<Props> = ({
   };
 
   const media = isVideo ? (
-    <video src={src} controls style={{ width: "100%" }} />
+    <Box component="video" src={src} controls sx={{ width: "100%" }} />
   ) : (
     <img src={src} title={title} />
   );

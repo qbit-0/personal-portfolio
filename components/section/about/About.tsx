@@ -9,7 +9,7 @@ const About = (props: Props) => {
   return (
     <Box component="section">
       <Container>
-        <Typography variant="h3">
+        <Typography variant="h3" fontWeight="bold">
           I'm a developer based in Orange County, California. I'm always willing
           to learn new tricks.
         </Typography>

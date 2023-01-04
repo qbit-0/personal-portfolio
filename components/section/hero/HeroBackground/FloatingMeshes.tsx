@@ -1,8 +1,7 @@
 import { Physics } from "@react-three/cannon";
 import { FC, useEffect, useMemo, useState } from "react";
 import { randFloat } from "three/src/math/MathUtils";
-
-import useInterval from "../../utility/hooks/useInterval";
+import useInterval from "../../../../utility/hooks/useInterval";
 import FloatingMesh, { FloatingMeshProps } from "./FloatingMesh";
 
 const initialMeshesCount = 10;
@@ -80,7 +79,7 @@ const FloatingMeshes: FC<Props> = (props) => {
 
   const meshes: JSX.Element[] = useMemo(
     () =>
-      meshesProps.map((meshProps, index) => {
+      meshesProps.map((meshProps) => {
         return (
           <FloatingMesh
             {...meshProps}

@@ -20,7 +20,7 @@ const SampleComponents = (props: Props) => {
   };
 
   return (
-    <Card>
+    <Card variant="outlined">
       <CardContent>
         <Typography variant="h4" gutterBottom>
           I build responsive components.

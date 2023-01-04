@@ -15,7 +15,7 @@ const CompetitiveProjectSummary: FC<Props> = ({
         <Box component="div">
           <Typography variant="h4">{competition}</Typography>
           <Typography variant="h5">{submission}</Typography>
-          <Typography variant="h6">{type}</Typography>
+          <Typography variant="body2">{type}</Typography>
         </Box>
       </Stack>
     </AccordionSummary>

@@ -14,9 +14,6 @@ const lightThemeOptions: ThemeOptions = {
     },
   },
   components: {},
-  shape: {
-    borderRadius: 8,
-  },
 };
 
 const lightTheme = responsiveFontSizes(createTheme(lightThemeOptions));

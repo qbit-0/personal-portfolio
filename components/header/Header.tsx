@@ -18,7 +18,6 @@ import { PAGES } from "../../pages";
 type Props = {};
 
 const Header = (props: Props) => {
-  const theme = useTheme();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (

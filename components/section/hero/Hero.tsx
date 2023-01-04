@@ -1,5 +1,5 @@
 import { Box, Container, Typography, useTheme } from "@mui/material";
-import Image from "next/image";
+import HeroCanvas from "./HeroBackground/HeroCanvas";
 
 type Props = {};
 
@@ -19,11 +19,9 @@ const Hero = (props: Props) => {
         zIndex={-1}
         width="100%"
         height="100%"
-        sx={{
-          backgroundImage: 'url("https://picsum.photos/1000/1000")',
-          filter: "brightness(500%) blur(10px)",
-        }}
-      />
+      >
+        <HeroCanvas />
+      </Box>
       <Box
         flex="1 0 auto"
         component="div"
@@ -43,9 +41,7 @@ const Hero = (props: Props) => {
               Duy Pham
             </Box>
           </Typography>
-          <Typography variant="h2">
-            Your future fullstack web developer
-          </Typography>
+          <Typography variant="h2">Fullstack web developer</Typography>
         </Container>
       </Box>
     </Box>
