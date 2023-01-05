@@ -36,7 +36,7 @@ const SampleProfile = (props: Props) => {
             <Grid2 xs={6} display="flex" flexDirection="column">
               <Box
                 component={Avatar}
-                src="images/me/stand.jpg"
+                src="images/me/profile.jpg"
                 variant="rounded"
                 flex="1 0 auto"
                 width="100%"
