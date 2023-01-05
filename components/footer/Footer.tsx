@@ -1,6 +1,14 @@
-import { Email, GitHub, Phone } from "@mui/icons-material";
-import { Box, Container, Stack, Typography, useTheme } from "@mui/material";
+import { Description, Email, GitHub, Phone } from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  Container,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
+import Link from "next/link";
 import React from "react";
 
 type Props = {};
@@ -24,25 +32,44 @@ const Footer = (props: Props) => {
             <Typography>Feel free to contact me anytime</Typography>
           </Grid2>
           <Grid2 xs={12} sm={6}>
-            <Stack direction="row" alignItems="center" spacing={2}>
-              <Email />
-              <Typography variant="body2">duypham12241999@gmail.com</Typography>
-            </Stack>
-            <Stack direction="row" alignItems="center" spacing={2}>
-              <Phone />
-              <Typography variant="body2">(714) 332-7916</Typography>
-            </Stack>
-            <Stack direction="row" alignItems="center" spacing={2}>
-              <GitHub />
-              <Box
-                component="a"
-                color="inherit"
-                href="https://github.com/qbit-0"
-              >
+            <Stack alignItems="start" spacing={1}>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <Email />
                 <Typography variant="body2">
-                  https://github.com/qbit-0
+                  duypham12241999@gmail.com
                 </Typography>
-              </Box>
+              </Stack>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <Phone />
+                <Typography variant="body2">(714) 332-7916</Typography>
+              </Stack>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <GitHub />
+                <Box
+                  component="a"
+                  color="inherit"
+                  href="https://github.com/qbit-0"
+                >
+                  <Typography variant="body2">
+                    https://github.com/qbit-0
+                  </Typography>
+                </Box>
+              </Stack>
+              <Link
+                href="pdf/Resume-Duy-Pham.pdf"
+                target="_blank"
+                download
+                color="inherit"
+              >
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  startIcon={<Description />}
+                  color="inherit"
+                >
+                  resume
+                </Button>
+              </Link>
             </Stack>
           </Grid2>
         </Grid2>

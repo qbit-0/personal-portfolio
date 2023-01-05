@@ -14,6 +14,7 @@ import React, { useState } from "react";
 import { Menu } from "@mui/icons-material";
 import SideNavDrawer from "./SideNavDrawer";
 import { PAGES } from "../../pages";
+import Link from "next/link";
 
 type Props = {};
 
@@ -51,11 +52,11 @@ const Header = (props: Props) => {
             spacing={2}
           >
             {PAGES.map((page) => (
-              <Box component="a" href={`#${page}`} color="inherit">
+              <Link href={`#${page}`} color="inherit">
                 <Button key={page} color="inherit">
                   {page}
                 </Button>
-              </Box>
+              </Link>
             ))}
           </Stack>
         </Toolbar>

@@ -1,13 +1,21 @@
-import { Email, GitHub, Phone } from "@mui/icons-material";
+import {
+  Description,
+  Download,
+  Email,
+  GitHub,
+  Phone,
+} from "@mui/icons-material";
 import {
   Avatar,
   Box,
+  Button,
   Card,
   CardContent,
   Stack,
   Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
+import Link from "next/link";
 import { useRef } from "react";
 import useRefDimensions from "../../../utility/hooks/useRefDimensions";
 
@@ -55,30 +63,44 @@ const SampleProfile = (props: Props) => {
                 </Typography>
               </Box>
             </Box>
-            <Stack direction="row" alignItems="center" spacing={2}>
-              <Email />
-              <Typography variant="body2">duypham12241999@gmail.com</Typography>
-            </Stack>
-            <Stack direction="row" alignItems="center" spacing={2}>
-              <Phone />
-              <Typography variant="body2">(714) 332-7916</Typography>
-            </Stack>
-            <Stack direction="row" alignItems="center" spacing={2}>
-              <GitHub />
-              <Box
-                component="a"
-                color="inherit"
-                href="https://github.com/qbit-0"
-              >
+            <Stack alignItems="start" spacing={1}>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <Email />
                 <Typography variant="body2">
-                  https://github.com/qbit-0
+                  duypham12241999@gmail.com
                 </Typography>
-              </Box>
+              </Stack>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <Phone />
+                <Typography variant="body2">(714) 332-7916</Typography>
+              </Stack>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <GitHub />
+                <Box
+                  component="a"
+                  color="inherit"
+                  href="https://github.com/qbit-0"
+                >
+                  <Typography variant="body2">
+                    https://github.com/qbit-0
+                  </Typography>
+                </Box>
+              </Stack>
+              <Link href="pdf/Resume-Duy-Pham.pdf" target="_blank" download>
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  startIcon={<Description />}
+                >
+                  resume
+                </Button>
+              </Link>
             </Stack>
             <Card variant="outlined" sx={{ mt: 2 }}>
               <CardContent>
                 <Typography variant="h6">
-                  Recent college grad looking to learn. Likes building stuff.
+                  Recent college grad always eager to learn. Likes building
+                  stuff.
                 </Typography>
               </CardContent>
             </Card>
