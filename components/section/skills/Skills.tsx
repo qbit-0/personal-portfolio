@@ -6,7 +6,7 @@ type Props = {};
 
 const Skills = (props: Props) => {
   return (
-    <Box component="section">
+    <Box component="section" id="skills">
       <Container>
         <Typography variant="h3" fontWeight="bold">
           My skills.

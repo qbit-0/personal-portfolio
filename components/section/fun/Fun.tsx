@@ -8,7 +8,7 @@ type Props = {};
 
 const Fun = (props: Props) => {
   return (
-    <Box component="section">
+    <Box component="section" id="fun">
       <Container>
         <Typography variant="h3" fontWeight="bold">
           What I do for fun.

@@ -9,7 +9,13 @@ const Footer = (props: Props) => {
   const theme = useTheme();
 
   return (
-    <Box component="footer" bgcolor={theme.palette.primary.dark} p={4} mt={32}>
+    <Box
+      component="footer"
+      id="contact"
+      bgcolor={theme.palette.primary.main}
+      p={4}
+      mt={32}
+    >
       <Container maxWidth="lg">
         <Grid2 container spacing={2} color="white">
           <Grid2 xs={12} sm={6}>

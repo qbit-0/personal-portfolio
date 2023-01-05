@@ -31,7 +31,12 @@ const SampleComponents = (props: Props) => {
           {numComponents > 2 && <SampleProfile />}
         </Stack>
       </CardContent>
-      <Box component={CardActions} px={8} py={4}>
+      <Box
+        component={CardActions}
+        px={8}
+        py={4}
+        display={["none", "none", "block"]}
+      >
         <Slider
           value={numComponents}
           onChange={handleSliderChange}

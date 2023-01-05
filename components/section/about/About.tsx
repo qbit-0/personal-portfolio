@@ -7,7 +7,7 @@ type Props = {};
 
 const About = (props: Props) => {
   return (
-    <Box component="section">
+    <Box component="section" id="about">
       <Container>
         <Typography variant="h3" fontWeight="bold">
           I'm a developer based in Orange County, California. I'm always willing

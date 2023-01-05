@@ -61,7 +61,7 @@ const SampleData = (props: Props) => {
           I bring data to life.
         </Typography>
         <Grid2 container mt={8}>
-          <Grid2 xs={6}>
+          <Grid2 xs={12} md={6} minHeight={400}>
             <DataGrid
               columns={[
                 { field: "id", headerName: "Id" },
@@ -75,15 +75,16 @@ const SampleData = (props: Props) => {
               }))}
             />
           </Grid2>
-          <Grid2 xs={6} display="flex">
+          <Grid2 xs={12} md={6} display="flex">
             <Box component="div" flexGrow={1} height={500}>
               <ResponsivePie
                 data={data}
                 margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
                 innerRadius={0.25}
-                padAngle={3}
+                padAngle={2}
                 cornerRadius={5}
                 borderWidth={1}
+                colors={{ scheme: "pastel1" }}
                 defs={defs}
                 fill={fill}
                 arcLinkLabel="label"

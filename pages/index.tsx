@@ -10,7 +10,7 @@ export const PAGES = [
   "about",
   "projects",
   "skills",
-  "competitions",
+  "fun",
   "contact",
 ];
 

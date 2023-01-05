@@ -51,9 +51,11 @@ const Header = (props: Props) => {
             spacing={2}
           >
             {PAGES.map((page) => (
-              <Button key={page} color="inherit">
-                {page}
-              </Button>
+              <Box component="a" href={`#${page}`} color="inherit">
+                <Button key={page} color="inherit">
+                  {page}
+                </Button>
+              </Box>
             ))}
           </Stack>
         </Toolbar>

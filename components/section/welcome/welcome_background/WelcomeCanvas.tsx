@@ -1,13 +1,13 @@
 import { Box } from "@mui/system";
 import { Environment, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { FC, Suspense } from "react";
+import { FC } from "react";
 import useDetectWebGL from "../../../../utility/hooks/useDetectWebGL";
 import FloatingMeshes from "./FloatingMeshes";
 
 type Props = {};
 
-const HeroCanvas: FC<Props> = (props) => {
+const WelcomeCanvas: FC<Props> = (props) => {
   const isWebGlDetected = useDetectWebGL();
 
   if (!isWebGlDetected) return <Box component="div" bgcolor="white" />;
@@ -32,4 +32,4 @@ const HeroCanvas: FC<Props> = (props) => {
   );
 };
 
-export default HeroCanvas;
+export default WelcomeCanvas;

@@ -6,10 +6,8 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-import React, { FC } from "react";
+import { FC } from "react";
 import { PAGES } from "../../pages";
-
-type Props = DrawerProps;
 
 const SideNavDrawer: FC<DrawerProps> = (props) => {
   return (
@@ -17,7 +15,14 @@ const SideNavDrawer: FC<DrawerProps> = (props) => {
       <List>
         {PAGES.map((page) => (
           <ListItem key={page}>
-            <ListItemButton>
+            <ListItemButton
+              onClick={() => {
+                location.href = `#${page}`;
+                if (props.onClose) {
+                  props.onClose({}, "backdropClick");
+                }
+              }}
+            >
               <ListItemText
                 primary={page}
                 sx={{ textTransform: "uppercase" }}

@@ -19,17 +19,23 @@ type Props = {
 
 const ProjectCard: FC<Props> = ({ name, desc, image, url, github }) => {
   return (
-    <Card>
+    <Box
+      component={Card}
+      flex="1 0 auto"
+      display="flex"
+      flexDirection="column"
+      variant="outlined"
+    >
       <Box
         component={CardMedia}
         image={image}
         title={`${name} preview`}
         height={300}
       />
-      <CardContent>
+      <Box component={CardContent} flex="1 0 auto">
         <Typography variant="h4">{name}</Typography>
         <Typography variant="h5">{desc}</Typography>
-      </CardContent>
+      </Box>
       <CardActions>
         <a href={url}>
           <Button>View Project</Button>
@@ -38,7 +44,7 @@ const ProjectCard: FC<Props> = ({ name, desc, image, url, github }) => {
           <Button>View Github</Button>
         </a>
       </CardActions>
-    </Card>
+    </Box>
   );
 };
 
