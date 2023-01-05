@@ -21,7 +21,7 @@ const Footer = (props: Props) => {
       component="footer"
       id="contact"
       bgcolor={theme.palette.primary.main}
-      p={4}
+      p={16}
       mt={32}
     >
       <Container maxWidth="lg">
