@@ -23,6 +23,7 @@
     "@react-three/cannon": "^6.4.0",
     "@react-three/drei": "^9.32.3",
     "@react-three/fiber": "^8.8.2",
+    "@vercel/analytics": "^0.1.6",
     "framer-motion": "^7.3.5",
     "framer-motion-3d": "^7.3.6",
     "immer": "^9.0.15",

@@ -2,6 +2,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { AppProps } from "next/app";
 import "../styles/globals.css";
 import lightTheme from "../styles/theme/lightTheme";
+import { Analytics } from "@vercel/analytics/react";
 
 import "@fontsource/public-sans";
 import "@fontsource/roboto";
@@ -18,6 +19,7 @@ const MyApp: React.FC<AppProps> = (props) => {
     <ThemeProvider theme={lightTheme}>
       <CssBaseline />
       <Component {...pageProps} />
+      <Analytics />
     </ThemeProvider>
   );
 };
