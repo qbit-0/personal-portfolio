@@ -41,7 +41,7 @@ const SampleProfile = (props: Props) => {
               {!lg && (
                 <Box
                   component={Avatar}
-                  src="images/me/stand.jpg"
+                  src="images/me/profile.jpg"
                   variant="rounded"
                   flex="1 0 auto"
                   width="100%"
