@@ -29,8 +29,8 @@ const Projects = (props: Props) => {
               name="Flocks"
               desc="Simulate flocks of birds."
               image="images/website_previews/flocks_preview.png"
-              url="https://doomscroll.duypham.tech/"
-              github="https://github.com/qbit-0/doom-scroll-v2"
+              url="https://flocks.duypham.tech/"
+              github="https://github.com/qbit-0/flocks"
             />
           </Grid2>
           <Grid2 xs={12} md={6} display="flex" flexDirection="column">
@@ -38,8 +38,8 @@ const Projects = (props: Props) => {
               name="Collapse"
               desc="Generate pixel landscapes."
               image="images/website_previews/collapse_preview.png"
-              url="https://doomscroll.duypham.tech/"
-              github="https://github.com/qbit-0/doom-scroll-v2"
+              url="https://collapse.duypham.tech/"
+              github="https://github.com/qbit-0/wave-function-collapse"
             />
           </Grid2>
           <Grid2 xs={12} md={6} display="flex" flexDirection="column">
