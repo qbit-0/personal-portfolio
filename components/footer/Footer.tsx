@@ -21,10 +21,10 @@ const Footer = (props: Props) => {
       component="footer"
       id="contact"
       bgcolor={theme.palette.primary.main}
-      p={16}
+      py={16}
       mt={32}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         <Grid2 container spacing={8} color="white">
           <Grid2 xs={12} md={6}>
             <Stack alignItems="start" spacing={1}>
