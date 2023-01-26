@@ -41,6 +41,7 @@ const SampleProfile = (props: Props) => {
                 flex="1 0 auto"
                 width="100%"
                 minHeight={300}
+                alt="Duy Pham"
               />
             </Grid2>
           )}
@@ -54,6 +55,7 @@ const SampleProfile = (props: Props) => {
                   flex="1 0 auto"
                   width="100%"
                   minHeight={md ? 300 : 200}
+                  alt="Duy Pham"
                 />
               )}
               <Box component="div">

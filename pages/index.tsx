@@ -20,7 +20,11 @@ const Index: FC<HomeProps> = (props) => {
   return (
     <>
       <Head>
-        <title>Duy Pham</title>
+        <title>Duy Pham | Web Dev Portfolio</title>
+        <meta
+          name="description"
+          content="Hi, I'm Duy Pham, Fullstack Developer working in Orange County, CA. This is my portfolio, come check it out."
+        />
       </Head>
       <Box
         component="div"
