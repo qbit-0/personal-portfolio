@@ -17,6 +17,15 @@ const Projects = (props: Props) => {
         <Grid2 container spacing={8} mt={8}>
           <Grid2 xs={12} md={6} display="flex" flexDirection="column">
             <ProjectCard
+              name="Two Pills"
+              desc="Go down user-generated rabbitholes."
+              image="images/website_previews/two_pills_preview.png"
+              url="https://two-pills.duypham.tech/"
+              github="https://github.com/DuyAndShin/two-pills"
+            />
+          </Grid2>
+          <Grid2 xs={12} md={6} display="flex" flexDirection="column">
+            <ProjectCard
               name="DoomScroll"
               desc="Filter Reddit by sentiment."
               image="images/website_previews/doom_scroll_preview.png"
@@ -42,7 +51,7 @@ const Projects = (props: Props) => {
               github="https://github.com/qbit-0/wave-function-collapse"
             />
           </Grid2>
-          <Grid2 xs={12} md={6} display="flex" flexDirection="column">
+          {/* <Grid2 xs={12} md={6} display="flex" flexDirection="column">
             <ProjectCard
               name="Personal Portfolio"
               desc="You're looking at it. Here's the source code."
@@ -50,7 +59,7 @@ const Projects = (props: Props) => {
               url="https://duypham.tech/"
               github="https://github.com/qbit-0/personal-portfolio"
             />
-          </Grid2>
+          </Grid2> */}
         </Grid2>
       </Container>
     </Box>

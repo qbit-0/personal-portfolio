@@ -52,7 +52,7 @@ const Header = (props: Props) => {
             spacing={2}
           >
             {PAGES.map((page) => (
-              <Link href={`#${page}`} color="inherit">
+              <Link key={page} href={`#${page}`} color="inherit">
                 <Button key={page} color="inherit">
                   {page}
                 </Button>
