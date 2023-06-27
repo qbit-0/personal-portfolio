@@ -15,7 +15,6 @@ const WelcomeCanvas: FC<Props> = (props) => {
   return (
     <Canvas>
       <PerspectiveCamera makeDefault position={[0, 1, 5]} fov={60} />
-      <Environment preset="warehouse" />
       <fog attach="fog" args={["white", 0, 100]} />
       <ambientLight intensity={0.2} />
       <directionalLight intensity={1} position={[-10, 10, 10]} />
